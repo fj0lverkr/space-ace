@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://dsipn43mopbgx"]
+[gd_scene load_steps=6 format=3 uid="uid://dsipn43mopbgx"]
+
+[ext_resource type="Texture2D" uid="uid://mw10cmj3fer8" path="res://assets/backgrounds/GalaxyUno.png" id="1_o4o5s"]
+[ext_resource type="Texture2D" uid="uid://dhvxih2ln0shu" path="res://assets/backgrounds/spr_stars01.png" id="2_vpmim"]
+[ext_resource type="Texture2D" uid="uid://bdqkrlnckk6pc" path="res://assets/backgrounds/spr_stars02.png" id="3_0h2ve"]
+[ext_resource type="PackedScene" uid="uid://bpfu0vgorifrw" path="res://scenes/sun/sun.tscn" id="4_1uulc"]
+[ext_resource type="LabelSettings" uid="uid://cb2u5o7m8jgyn" path="res://assets/LG_Title.tres" id="5_wv65q"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,3 +13,60 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BG1" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -826.667
+offset_bottom = 826.667
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_o4o5s")
+expand_mode = 5
+
+[node name="BG2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vpmim")
+expand_mode = 3
+
+[node name="BG3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0h2ve")
+expand_mode = 2
+
+[node name="Sun" parent="." instance=ExtResource("4_1uulc")]
+position = Vector2(83, 83)
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="Label" type="Label" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SPACE ACE"
+label_settings = ExtResource("5_wv65q")
+vertical_alignment = 1
+
+[node name="VB" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
