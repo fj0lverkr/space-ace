@@ -17,7 +17,7 @@ func _process_input(_delta: float) -> void:
 
 
 func _toggle_pauze(paused: bool) -> void:
-	Engine.time_scale = 1 if paused else 0
+	Engine.time_scale = 0 if paused else 1
 	if paused:
 		pause_overlay.show()
 	else:
