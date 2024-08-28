@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv6eyxurfctkh"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_mgefi"]
+[ext_resource type="PackedScene" uid="uid://bs8qampxx75ga" path="res://scenes/pause/pause.tscn" id="2_dk1hs"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_mgefi")
+
+[node name="Pause" parent="." instance=ExtResource("2_dk1hs")]
+visible = false

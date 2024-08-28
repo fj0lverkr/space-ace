@@ -2,8 +2,8 @@ extends Control
 
 
 func _on_btn_start_pressed() -> void:
-	print("start")
+	GameManager.load_level_scene()
 
 
 func _on_btn_quit_pressed() -> void:
-	print("quit")
+	get_tree().quit()
