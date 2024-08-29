@@ -6,8 +6,8 @@
 [node name="BaseBullet" instance=ExtResource("1_8iwxr")]
 script = ExtResource("2_52egn")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
