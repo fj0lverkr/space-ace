@@ -29,6 +29,10 @@ var _type: PowerUp.Type
 
 func _ready() -> void:
 	_timer.wait_time = _life_time
+	if _textures.has(_type):
+		_sprite.texture = load(_textures[_type])
+
+	_timer.start()
 
 
 func _process(delta: float) -> void:
@@ -37,11 +41,6 @@ func _process(delta: float) -> void:
 
 func setup(type: PowerUp.Type) -> void:
 	_type = type
-	if _textures.has(type):
-		var t: Texture2D = load(_textures[type])
-		_sprite.texture = t
-
-	_timer.start()
 
 
 func _on_timer_timeout() -> void:
