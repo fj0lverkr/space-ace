@@ -1,7 +1,7 @@
 class_name BaseBullet
 extends CollidableObject
 
-enum BulletType {PLAYER, ENEMY, ENEMY_BULLET}
+enum BulletType {PLAYER, ENEMY, ENEMY_BOMB}
 
 var _direction: Vector2 = Vector2.UP
 var _speed: float = 200.0

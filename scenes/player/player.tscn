@@ -85,3 +85,9 @@ libraries = {
 autoplay = "fly"
 
 [node name="Shield" parent="." instance=ExtResource("3_cijh6")]
+
+[node name="GunLeft" type="Marker2D" parent="."]
+position = Vector2(-9, -16)
+
+[node name="GunRight" type="Marker2D" parent="."]
+position = Vector2(9, -16)
