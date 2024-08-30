@@ -5,6 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	SignalBus.on_continue.connect(_toggle_pauze.bind(false))
+	SignalBus.on_try_powerup.emit(100.0, PowerUp.Type.SHIELD, Vector2(100.0, 100.0))
 
 
 func _process(delta: float) -> void:
