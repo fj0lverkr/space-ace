@@ -34,6 +34,12 @@ func _on_shoot(bt: BaseBullet.BulletType, dir: Vector2, speed: float, gp: Vector
 
 
 func _on_try_powerup(_chance: float, type: PowerUp.Type, gp: Vector2) -> void:
+    _chance = 100.0 if _chance >= 100.0 else _chance
+    _chance = 0.0 if _chance <= 0.0 else _chance
+    var dice_roll: float = randf_range(0, 100)
+    if dice_roll > _chance:
+        return
+    
     var pu: PowerUp = POWER_UP.instantiate()
     pu.setup(type)
     call_deferred(ADD_OBJECT, pu, gp)
