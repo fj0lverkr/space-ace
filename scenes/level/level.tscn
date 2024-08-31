@@ -18,3 +18,5 @@ visible = false
 position = Vector2(322, 396)
 
 [node name="ObjectFactory" parent="." instance=ExtResource("5_lifmh")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]

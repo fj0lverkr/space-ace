@@ -30,6 +30,7 @@ func activate() -> void:
 	_is_active = true
 	_hits_left = _max_hits
 	_collission_shape.call_deferred("set_disabled", false)
+	SoundManager.play_pu_activate(_sound, PowerUp.Type.SHIELD)
 	show()
 	_timer.start()
 
