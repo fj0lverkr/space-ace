@@ -10,13 +10,15 @@ var _speed: float = 250.0
 var _bullet_speed: float = 275
 
 @onready
-var sprite: Sprite2D = $Sprite2D
+var _sprite: Sprite2D = $Sprite2D
 @onready
-var animation_player: AnimationPlayer = $AnimationPlayer
+var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready
-var gun_left: Marker2D = $GunLeft
+var _gun_left: Marker2D = $GunLeft
 @onready
-var gun_right: Marker2D = $GunRight
+var _gun_right: Marker2D = $GunRight
+@onready
+var _sfx_player: AudioStreamPlayer2D = $SFXPlayer
 
 var _bounds: Rect2
 var _last_shot_left: bool = false
@@ -44,15 +46,16 @@ func _process_movement() -> Vector2:
 	)
 
 	if v.x != 0:
-		animation_player.play("turn")
-		sprite.flip_h = v.x > 0
+		_animation_player.play("turn")
+		_sprite.flip_h = v.x > 0
 	else:
-		animation_player.play("fly")
+		_animation_player.play("fly")
 
 	return v.normalized()
 
 
 func _shoot() -> void:
 	_last_shot_left = !_last_shot_left
-	var gp: Vector2 = gun_left.global_position if _last_shot_left else gun_right.global_position
+	var gp: Vector2 = _gun_left.global_position if _last_shot_left else _gun_right.global_position
+	SoundManager.play_by_type(_sfx_player, SoundManager.SoundType.LASER)
 	SignalBus.on_shoot.emit(BaseBullet.BulletType.PLAYER, Vector2.UP, _bullet_speed, gp)
