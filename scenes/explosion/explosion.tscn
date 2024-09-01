@@ -112,6 +112,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wprw0")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"boom",
@@ -173,9 +176,7 @@ animations = [{
 
 [node name="Explosion" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_b07go")
-animation = &"explosion"
-frame = 15
-frame_progress = 1.0
+animation = &"boom"
 script = ExtResource("3_om4bd")
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]
