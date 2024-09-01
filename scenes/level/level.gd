@@ -4,6 +4,8 @@ extends Node2D
 var _pause_overlay: CanvasLayer = $Pause
 @onready
 var _bgm_player: AudioStreamPlayer = $BGM
+@onready
+var _remove_me: Path2D = $TempPath
 
 
 func _ready() -> void:
@@ -13,7 +15,7 @@ func _ready() -> void:
 
 	# for testing purposes
 	#SignalBus.on_try_powerup.emit(100.0, PowerUp.Type.SHIELD, Vector2(100.0, 100.0))
-	SignalBus.on_request_enemy.emit(BaseEnemy.Type.ZIPPER, BaseEnemy.Variant.BLUE)
+	SignalBus.on_request_enemy.emit(BaseEnemy.Type.ZIPPER, BaseEnemy.Variant.BLUE, _remove_me)
 
 
 func _process(delta: float) -> void:

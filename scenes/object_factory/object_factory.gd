@@ -9,6 +9,7 @@ const EXPLOSION: PackedScene = preload("res://scenes/explosion/explosion.tscn")
 const ZIPPER: PackedScene = preload("res://scenes/enemies/enemy_zipper.tscn")
 
 const ADD_OBJECT: String = "_add_object"
+const ADD_PATH_FOLLOWER: String = "_add_follower_to_path"
 
 
 func _ready() -> void:
@@ -56,14 +57,14 @@ func _on_try_powerup(_chance: float, type: PowerUp.Type, gp: Vector2) -> void:
 func _on_explode(type: Explosion.Type, gp: Vector2) -> void:
     var ex: Explosion = EXPLOSION.instantiate()
     ex.setup(type)
+    ex.z_index = 10
     call_deferred(ADD_OBJECT, ex, gp)
 
 
-func _on_request_enemy(type: BaseEnemy.Type, variant: BaseEnemy.Variant, _path: Path2D = null) -> void:
-    # this should add a zipper of type variant as a child of path, for now we just add it and set the _path to optional
+func _on_request_enemy(type: BaseEnemy.Type, variant: BaseEnemy.Variant, path: Path2D) -> void:
     var enemy: BaseEnemy
     match type:
         BaseEnemy.Type.ZIPPER:
             enemy = ZIPPER.instantiate()
     enemy.setup(variant)
-    call_deferred(ADD_OBJECT, enemy, Vector2(250.0, 250.0))
+    call_deferred(ADD_PATH_FOLLOWER, enemy, path)

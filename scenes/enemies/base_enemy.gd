@@ -19,12 +19,13 @@ var _duration: float = 30
 
 
 func _ready() -> void:
+	rotates = false
 	timer.wait_time = _duration
 	timer.start()
 
 
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	progress += _speed * delta
 
 
 func setup(_t: Variant) -> void:
