@@ -23,4 +23,10 @@ func setup(type: Type) -> void:
 
 
 func _on_animation_finished() -> void:
-	queue_free()
+	if not _sfx.playing:
+		queue_free()
+
+
+func _on_sfx_finished() -> void:
+	if not is_playing():
+		queue_free()

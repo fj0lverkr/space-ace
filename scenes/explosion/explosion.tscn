@@ -181,3 +181,4 @@ script = ExtResource("3_om4bd")
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="finished" from="Sfx" to="." method="_on_sfx_finished"]
