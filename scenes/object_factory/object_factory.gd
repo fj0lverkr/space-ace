@@ -5,6 +5,7 @@ const PLAYER_BULLET: PackedScene = preload("res://scenes/bullets/player/player_b
 const ENEMY_BULLET: PackedScene = preload("res://scenes/bullets/enemy/enemy_bullet.tscn")
 const ENEMY_BOMB: PackedScene = preload("res://scenes/bullets/bomb/enemy_bomb.tscn")
 const POWER_UP: PackedScene = preload("res://scenes/power_up/power_up.tscn")
+const EXPLOSION: PackedScene = preload("res://scenes/explosion/explosion.tscn")
 
 const ADD_OBJECT: String = "_add_object"
 
@@ -12,6 +13,7 @@ const ADD_OBJECT: String = "_add_object"
 func _ready() -> void:
     SignalBus.on_shoot.connect(_on_shoot)
     SignalBus.on_try_powerup.connect(_on_try_powerup)
+    SignalBus.on_explode.connect(_on_explode)
 
 
 func _add_object(obj: Node, gp: Vector2) -> void:
@@ -43,3 +45,9 @@ func _on_try_powerup(_chance: float, type: PowerUp.Type, gp: Vector2) -> void:
     var pu: PowerUp = POWER_UP.instantiate()
     pu.setup(type)
     call_deferred(ADD_OBJECT, pu, gp)
+
+
+func _on_explode(type: Explosion.Type, gp: Vector2) -> void:
+    var ex: Explosion = EXPLOSION.instantiate()
+    ex.setup(type)
+    call_deferred(ADD_OBJECT, ex, gp)
