@@ -13,8 +13,8 @@ func _ready() -> void:
 
 	# for testing purposes
 	#SignalBus.on_try_powerup.emit(100.0, PowerUp.Type.SHIELD, Vector2(100.0, 100.0))
-	SignalBus.on_explode.emit(Explosion.Type.EXPLOSION, Vector2(300.0, 250.0))
-	SignalBus.on_explode.emit(Explosion.Type.BOOM, Vector2(200.0, 250.0))
+	#SignalBus.on_explode.emit(Explosion.Type.EXPLOSION, Vector2(300.0, 250.0))
+	#SignalBus.on_explode.emit(Explosion.Type.BOOM, Vector2(200.0, 250.0))
 
 
 func _process(delta: float) -> void:
