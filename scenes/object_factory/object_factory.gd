@@ -6,6 +6,7 @@ const ENEMY_BULLET: PackedScene = preload("res://scenes/bullets/enemy/enemy_bull
 const ENEMY_BOMB: PackedScene = preload("res://scenes/bullets/bomb/enemy_bomb.tscn")
 const POWER_UP: PackedScene = preload("res://scenes/power_up/power_up.tscn")
 const EXPLOSION: PackedScene = preload("res://scenes/explosion/explosion.tscn")
+const ZIPPER: PackedScene = preload("res://scenes/enemies/enemy_zipper.tscn")
 
 const ADD_OBJECT: String = "_add_object"
 
@@ -14,11 +15,16 @@ func _ready() -> void:
     SignalBus.on_shoot.connect(_on_shoot)
     SignalBus.on_try_powerup.connect(_on_try_powerup)
     SignalBus.on_explode.connect(_on_explode)
+    SignalBus.on_request_enemy.connect(_on_request_enemy)
 
 
 func _add_object(obj: Node, gp: Vector2) -> void:
     add_child(obj)
     obj.global_position = gp
+
+
+func _add_follower_to_path(f: PathFollow2D, p: Path2D) -> void:
+    p.add_child(f)
 
 
 func _on_shoot(bt: BaseBullet.BulletType, dir: Vector2, speed: float, gp: Vector2) -> void:
@@ -51,3 +57,13 @@ func _on_explode(type: Explosion.Type, gp: Vector2) -> void:
     var ex: Explosion = EXPLOSION.instantiate()
     ex.setup(type)
     call_deferred(ADD_OBJECT, ex, gp)
+
+
+func _on_request_enemy(type: BaseEnemy.Type, variant: BaseEnemy.Variant, _path: Path2D = null) -> void:
+    # this should add a zipper of type variant as a child of path, for now we just add it and set the _path to optional
+    var enemy: BaseEnemy
+    match type:
+        BaseEnemy.Type.ZIPPER:
+            enemy = ZIPPER.instantiate()
+    enemy.setup(variant)
+    call_deferred(ADD_OBJECT, enemy, Vector2(250.0, 250.0))
