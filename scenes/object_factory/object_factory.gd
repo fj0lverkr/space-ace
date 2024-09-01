@@ -7,6 +7,7 @@ const ENEMY_BOMB: PackedScene = preload("res://scenes/bullets/bomb/enemy_bomb.ts
 const POWER_UP: PackedScene = preload("res://scenes/power_up/power_up.tscn")
 const EXPLOSION: PackedScene = preload("res://scenes/explosion/explosion.tscn")
 const ZIPPER: PackedScene = preload("res://scenes/enemies/enemy_zipper.tscn")
+const BIOMECH: PackedScene = preload("res://scenes/enemies/enemy_bio.tscn")
 
 const ADD_OBJECT: String = "_add_object"
 const ADD_PATH_FOLLOWER: String = "_add_follower_to_path"
@@ -61,10 +62,12 @@ func _on_explode(type: Explosion.Type, gp: Vector2) -> void:
     call_deferred(ADD_OBJECT, ex, gp)
 
 
-func _on_request_enemy(type: BaseEnemy.Type, variant: BaseEnemy.Variant, path: Path2D) -> void:
+func _on_request_enemy(type: BaseEnemy.Type, subtype: BaseEnemy.SubType, path: Path2D) -> void:
     var enemy: BaseEnemy
     match type:
         BaseEnemy.Type.ZIPPER:
             enemy = ZIPPER.instantiate()
-    enemy.setup(variant)
+        BaseEnemy.Type.BIO:
+            enemy = BIOMECH.instantiate()
+    enemy.setup(subtype)
     call_deferred(ADD_PATH_FOLLOWER, enemy, path)

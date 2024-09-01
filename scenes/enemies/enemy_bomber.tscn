@@ -1,60 +1,60 @@
-[gd_scene load_steps=20 format=3 uid="uid://47n3owtri7p0"]
+[gd_scene load_steps=20 format=3 uid="uid://bnsx86x2dlsdb"]
 
-[ext_resource type="PackedScene" uid="uid://bev4wimedk8q" path="res://scenes/enemies/base_enemy.tscn" id="1_i1122"]
-[ext_resource type="Texture2D" uid="uid://v7dynwjrgx7" path="res://assets/ships/zipper_2.png" id="2_fkvi5"]
-[ext_resource type="Texture2D" uid="uid://ukymmea2v7wr" path="res://assets/ships/zipper_1.png" id="2_ppdy1"]
-[ext_resource type="Script" path="res://scenes/enemies/enemy_zipper.gd" id="2_sl04y"]
-[ext_resource type="Texture2D" uid="uid://dq8o72248jdnc" path="res://assets/ships/zipper_3.png" id="3_rf7i5"]
+[ext_resource type="PackedScene" uid="uid://bev4wimedk8q" path="res://scenes/enemies/base_enemy.tscn" id="1_y51lb"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_bomber.gd" id="2_gsaap"]
+[ext_resource type="Texture2D" uid="uid://v7dynwjrgx7" path="res://assets/ships/zipper_2.png" id="3_qg5g8"]
+[ext_resource type="Texture2D" uid="uid://dq8o72248jdnc" path="res://assets/ships/zipper_3.png" id="4_jn6gp"]
+[ext_resource type="Texture2D" uid="uid://ukymmea2v7wr" path="res://assets/ships/zipper_1.png" id="5_ybrv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnca0"]
 size = Vector2(40, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqgqy"]
-atlas = ExtResource("2_fkvi5")
+atlas = ExtResource("3_qg5g8")
 region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08sfv"]
-atlas = ExtResource("2_fkvi5")
+atlas = ExtResource("3_qg5g8")
 region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlirq"]
-atlas = ExtResource("2_fkvi5")
+atlas = ExtResource("3_qg5g8")
 region = Rect2(96, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wv2uc"]
-atlas = ExtResource("2_fkvi5")
+atlas = ExtResource("3_qg5g8")
 region = Rect2(144, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2dyk"]
-atlas = ExtResource("3_rf7i5")
+atlas = ExtResource("4_jn6gp")
 region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnice"]
-atlas = ExtResource("3_rf7i5")
+atlas = ExtResource("4_jn6gp")
 region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81w0a"]
-atlas = ExtResource("3_rf7i5")
+atlas = ExtResource("4_jn6gp")
 region = Rect2(96, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0wox"]
-atlas = ExtResource("3_rf7i5")
+atlas = ExtResource("4_jn6gp")
 region = Rect2(144, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt3x3"]
-atlas = ExtResource("2_ppdy1")
+atlas = ExtResource("5_ybrv5")
 region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c07ad"]
-atlas = ExtResource("2_ppdy1")
+atlas = ExtResource("5_ybrv5")
 region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0eil"]
-atlas = ExtResource("2_ppdy1")
+atlas = ExtResource("5_ybrv5")
 region = Rect2(96, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8eueq"]
-atlas = ExtResource("2_ppdy1")
+atlas = ExtResource("5_ybrv5")
 region = Rect2(144, 0, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bqoph"]
@@ -111,8 +111,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="EnemyZipper" instance=ExtResource("1_i1122")]
-script = ExtResource("2_sl04y")
+[node name="Enemybomber" instance=ExtResource("1_y51lb")]
+script = ExtResource("2_gsaap")
 
 [node name="Shape" parent="CollidableObject" index="0"]
 position = Vector2(0, -1.5)

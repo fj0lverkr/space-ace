@@ -42,6 +42,7 @@ _data = {
 }
 
 [node name="BaseEnemy" type="PathFollow2D"]
+rotates = false
 script = ExtResource("1_vvqcf")
 
 [node name="CollidableObject" parent="." instance=ExtResource("2_7tfwu")]

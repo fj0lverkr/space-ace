@@ -2,9 +2,14 @@ class_name BaseEnemy
 extends PathFollow2D
 
 enum Type {ZIPPER, BIO, BOMBER}
-enum Variant {YELLOW, BLUE, RED}
+enum SubType {YELLOW, BLUE, RED}
 
 const FLICKER: String = "flicker"
+const SUBTYPE: Dictionary = {
+	SubType.YELLOW: "yellow",
+	SubType.BLUE: "blue",
+	SubType.RED: "red"
+}
 
 @onready
 var sprite: AnimatedSprite2D = $Sprite
@@ -13,23 +18,26 @@ var animation_player: AnimationPlayer = $AnimationPlayer
 @onready
 var timer: Timer = $OutOfTime
 
-var _health: int = 100
-var _speed: float = 100
-var _duration: float = 30
+var _health: int
+var _speed: float
+var _subtype: String
+
+var _health_data: Dictionary
+var _speed_data: Dictionary
 
 
 func _ready() -> void:
-	rotates = false
-	timer.wait_time = _duration
-	timer.start()
+	pass
 
 
 func _process(delta: float) -> void:
 	progress += _speed * delta
 
 
-func setup(_t: Variant) -> void:
-	pass
+func setup(s: SubType) -> void:
+	_health = _health_data[s]
+	_speed = _speed_data[s]
+	_subtype = SUBTYPE[s]
 
 
 func _on_out_of_time_timeout() -> void:

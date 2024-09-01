@@ -1,16 +1,16 @@
-class_name EnemyZipper
+class_name EnemyBio
 extends BaseEnemy
 
 const HEALTH: Dictionary = {
-	SubType.YELLOW: 100,
-	SubType.BLUE: 150,
-	SubType.RED: 200
+	SubType.YELLOW: 120,
+	SubType.BLUE: 175,
+	SubType.RED: 250
 }
 
 const SPEED: Dictionary = {
-	SubType.YELLOW: 100,
-	SubType.BLUE: 120,
-	SubType.RED: 150
+	SubType.YELLOW: 90,
+	SubType.BLUE: 100,
+	SubType.RED: 120
 }
 
 

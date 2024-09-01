@@ -20,6 +20,7 @@ func setup(d: Vector2, s: float) -> void:
 
 
 func _blow_up() -> void:
+	_speed = 0.0
 	SignalBus.on_explode.emit(Explosion.Type.EXPLOSION, _tip.global_position)
 	set_process(false)
 	queue_free()
