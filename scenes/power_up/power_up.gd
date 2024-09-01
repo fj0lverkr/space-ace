@@ -14,6 +14,8 @@ var _sprite: Sprite2D = $Sprite2D
 var _animation: AnimationPlayer = $AnimationPlayer
 @onready
 var _timer: Timer = $Timer
+@onready
+var _sfx: AudioStreamPlayer2D = $Sfx
 
 const FLICKER: String = "flicker"
 const TEX_POWERUP: String = "res://assets/misc/powerupGreen_bolt.png"
@@ -29,8 +31,11 @@ var _type: PowerUp.Type
 
 func _ready() -> void:
 	_timer.wait_time = _life_time
+	
 	if _textures.has(_type):
 		_sprite.texture = load(_textures[_type])
+
+	SoundManager.play_pu_deploy(_sfx)
 
 	_timer.start()
 
