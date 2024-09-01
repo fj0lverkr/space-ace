@@ -3,6 +3,9 @@ extends CollidableObject
 
 enum BulletType {PLAYER, ENEMY, ENEMY_BOMB}
 
+@onready
+var _tip: Marker2D = $BulletTipMarker
+
 var _direction: Vector2 = Vector2.UP
 var _speed: float = 200.0
 
@@ -17,6 +20,7 @@ func setup(d: Vector2, s: float) -> void:
 
 
 func _blow_up() -> void:
+	SignalBus.on_explode.emit(Explosion.Type.EXPLOSION, _tip.global_position)
 	set_process(false)
 	queue_free()
 

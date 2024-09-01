@@ -92,4 +92,4 @@ position = Vector2(-9, -16)
 [node name="GunRight" type="Marker2D" parent="."]
 position = Vector2(9, -16)
 
-[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]

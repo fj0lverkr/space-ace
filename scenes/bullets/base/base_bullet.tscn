@@ -10,4 +10,8 @@ script = ExtResource("2_52egn")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
 
+[node name="BulletTipMarker" type="Marker2D" parent="." index="3"]
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="." index="4"]
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

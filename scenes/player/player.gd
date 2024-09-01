@@ -17,8 +17,6 @@ var _animation_player: AnimationPlayer = $AnimationPlayer
 var _gun_left: Marker2D = $GunLeft
 @onready
 var _gun_right: Marker2D = $GunRight
-@onready
-var _sfx_player: AudioStreamPlayer2D = $SFXPlayer
 
 var _bounds: Rect2
 var _last_shot_left: bool = false
@@ -67,5 +65,4 @@ func _shoot() -> void:
 
 	_last_shot_left = !_last_shot_left
 	var gp: Vector2 = _gun_left.global_position if _last_shot_left else _gun_right.global_position
-	SoundManager.play_by_type(_sfx_player, SoundManager.SoundType.LASER, 1)
 	SignalBus.on_shoot.emit(BaseBullet.BulletType.PLAYER, Vector2.UP, _bullet_speed, gp)
