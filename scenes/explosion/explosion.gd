@@ -20,7 +20,6 @@ func _ready() -> void:
 
 func setup(type: Type) -> void:
 	_type = type
-	scale = Vector2(0.5, 0.5) if type == Type.BOOM else Vector2(1.0, 1.0)
 
 
 func _on_animation_finished() -> void:
