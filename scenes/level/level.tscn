@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv6eyxurfctkh"]
+[gd_scene load_steps=7 format=3 uid="uid://bv6eyxurfctkh"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_mgefi"]
 [ext_resource type="PackedScene" uid="uid://bs8qampxx75ga" path="res://scenes/pause/pause.tscn" id="2_dk1hs"]
 [ext_resource type="PackedScene" uid="uid://dvgekg7u15jhr" path="res://scenes/level_bg/level_bg.tscn" id="3_3ioev"]
+[ext_resource type="PackedScene" uid="uid://dks7b3wdmwic3" path="res://scenes/debug/training_dummy.tscn" id="4_3g5ps"]
 [ext_resource type="PackedScene" uid="uid://6uyq43b3x314" path="res://scenes/player/player.tscn" id="4_ney5u"]
 [ext_resource type="PackedScene" uid="uid://dvfmgnuboyhc0" path="res://scenes/object_factory/object_factory.tscn" id="5_lifmh"]
 
@@ -13,6 +14,8 @@ script = ExtResource("1_mgefi")
 visible = false
 
 [node name="LevelBg" parent="." instance=ExtResource("3_3ioev")]
+
+[node name="TrainingDummy" parent="." instance=ExtResource("4_3g5ps")]
 
 [node name="Player" parent="." instance=ExtResource("4_ney5u")]
 position = Vector2(322, 396)

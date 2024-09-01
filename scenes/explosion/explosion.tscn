@@ -168,6 +168,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ijvy5")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"explosion",
@@ -177,7 +180,7 @@ animations = [{
 [node name="Explosion" type="AnimatedSprite2D"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_b07go")
-animation = &"boom"
+animation = &"explosion"
 script = ExtResource("3_om4bd")
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]
