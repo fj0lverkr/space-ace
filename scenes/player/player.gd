@@ -22,9 +22,12 @@ var _sfx_player: AudioStreamPlayer2D = $SFXPlayer
 
 var _bounds: Rect2
 var _last_shot_left: bool = false
+var _paused: bool = false
 
 
 func _ready() -> void:
+	SignalBus.on_pause.connect(_toggle_pause.bind(true))
+	SignalBus.on_continue.connect(_toggle_pause.bind(false))
 	_bounds = get_viewport_rect()
 	_bounds.position += MARGIN
 	_bounds.end -= MARGIN * 2
@@ -54,8 +57,15 @@ func _process_movement() -> Vector2:
 	return v.normalized()
 
 
+func _toggle_pause(p: bool) -> void:
+	_paused = p
+
+
 func _shoot() -> void:
+	if _paused:
+		return
+
 	_last_shot_left = !_last_shot_left
 	var gp: Vector2 = _gun_left.global_position if _last_shot_left else _gun_right.global_position
-	SoundManager.play_by_type(_sfx_player, SoundManager.SoundType.LASER)
+	SoundManager.play_by_type(_sfx_player, SoundManager.SoundType.LASER, 1)
 	SignalBus.on_shoot.emit(BaseBullet.BulletType.PLAYER, Vector2.UP, _bullet_speed, gp)

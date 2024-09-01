@@ -92,9 +92,12 @@ func play_pu_activate(player: AudioStreamPlayer2D, which: PowerUp.Type) -> void:
 	player.play()
 
 
-func play_by_type(player: AudioStreamPlayer2D, type: SoundType) -> void:
+func play_by_type(player: AudioStreamPlayer2D, type: SoundType, index: int = -1) -> void:
 	if not _sound_data.has(type):
 		return
 
-	player.stream = _sound_data[type].pick_random()
+	if index > -1 and _sound_data[type].size() > index:
+		player.stream = _sound_data[type][index]
+	else:
+		player.stream = _sound_data[type].pick_random()
 	player.play()
