@@ -60,5 +60,9 @@ libraries = {
 "": SubResource("AnimationLibrary_jgij4")
 }
 
+[node name="LaserTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="OutOfTime" to="." method="_on_out_of_time_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

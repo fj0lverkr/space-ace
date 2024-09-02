@@ -1,6 +1,9 @@
 class_name EnemyZipper
 extends BaseEnemy
 
+@onready
+var _marker_gun: Marker2D = $MarkerGun
+
 const HEALTH: Dictionary = {
 	SubType.YELLOW: 100,
 	SubType.BLUE: 150,
@@ -21,6 +24,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
+	_shoot(_marker_gun.global_position)
 
 
 func setup(s: SubType) -> void:
