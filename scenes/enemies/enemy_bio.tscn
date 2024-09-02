@@ -128,4 +128,7 @@ flip_v = true
 [node name="OutOfTime" parent="." index="2"]
 autostart = true
 
+[node name="MarkerGun" type="Marker2D" parent="." index="5"]
+position = Vector2(0, 17)
+
 [editable path="CollidableObject"]

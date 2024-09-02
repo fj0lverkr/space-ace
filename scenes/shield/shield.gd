@@ -57,7 +57,7 @@ func _on_area_entered(_area: Area2D) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "flicker":
+	if anim_name == Constants.FLICKER:
 		hide()
 
 

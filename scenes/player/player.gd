@@ -1,9 +1,6 @@
 class_name Player
 extends Area2D
 
-const MARGINF: float = 20.0
-const MARGIN: Vector2 = Vector2(MARGINF, MARGINF)
-
 @export
 var _speed: float = 250.0
 @export
@@ -27,8 +24,8 @@ func _ready() -> void:
 	SignalBus.on_pause.connect(_toggle_pause.bind(true))
 	SignalBus.on_continue.connect(_toggle_pause.bind(false))
 	_bounds = get_viewport_rect()
-	_bounds.position += MARGIN
-	_bounds.end -= MARGIN * 2
+	_bounds.position += Constants.MARGIN
+	_bounds.end -= Constants.MARGIN * 2
 
 
 func _process(delta: float) -> void:

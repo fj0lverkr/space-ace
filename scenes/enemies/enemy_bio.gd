@@ -13,6 +13,9 @@ const SPEED: Dictionary = {
 	SubType.RED: 120
 }
 
+@onready
+var _marker_gun: Marker2D = $MarkerGun
+
 
 func _ready() -> void:
 	super._ready()
@@ -21,6 +24,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
+	var dir: Vector2 = _player_ref.global_position - _marker_gun.global_position
+	_shoot(_marker_gun.global_position, false, dir)
 
 
 func setup(s: SubType) -> void:

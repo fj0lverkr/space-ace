@@ -10,6 +10,10 @@ var _direction: Vector2 = Vector2.UP
 var _speed: float = 200.0
 
 
+func _ready() -> void:
+	look_at(_direction)
+
+
 func _process(delta: float) -> void:
 	position += delta * _speed * _direction
 

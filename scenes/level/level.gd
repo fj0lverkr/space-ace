@@ -16,6 +16,7 @@ func _ready() -> void:
 	# for testing purposes
 	#SignalBus.on_try_powerup.emit(100.0, PowerUp.Type.SHIELD, Vector2(100.0, 100.0))
 	SignalBus.on_request_enemy.emit(BaseEnemy.Type.ZIPPER, BaseEnemy.SubType.RED, _remove_me)
+	SignalBus.on_request_enemy.emit(BaseEnemy.Type.BIO, BaseEnemy.SubType.YELLOW, _remove_me)
 
 
 func _process(delta: float) -> void:

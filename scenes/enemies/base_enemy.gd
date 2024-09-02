@@ -4,14 +4,13 @@ extends PathFollow2D
 enum Type {ZIPPER, BIO, BOMBER}
 enum SubType {YELLOW, BLUE, RED}
 
-const FLICKER: String = "flicker"
 const SUBTYPE: Dictionary = {
 	SubType.YELLOW: "yellow",
 	SubType.BLUE: "blue",
 	SubType.RED: "red",
 }
 const LASER_TIMEOUT: Dictionary = {
-		SubType.YELLOW: Vector2(1.0, 5.0),
+	SubType.YELLOW: Vector2(1.0, 5.0),
 	SubType.BLUE: Vector2(0.5, 3.0),
 	SubType.RED: Vector2(0.5, 2.0),
 }
@@ -28,20 +27,28 @@ var laser_timer: Timer = $LaserTimer
 var _health: int
 var _speed: float
 var _subtype: String
-
 var _health_data: Dictionary
 var _speed_data: Dictionary
-
 var _can_shoot: bool = true
 var _laser_timeout: Vector2
+var _player_ref: Player
 
 
 func _ready() -> void:
-	pass
+	_player_ref = _get_player_ref()
 
 
 func _process(delta: float) -> void:
 	progress += _speed * delta
+
+
+func _get_player_ref() -> Player:
+	var nodes: Array[Node] = get_tree().get_nodes_in_group(Constants.GRP_PLAYER)
+	
+	if nodes.is_empty():
+		return null
+
+	return nodes[0]
 
 
 func setup(s: SubType) -> void:
@@ -52,11 +59,11 @@ func setup(s: SubType) -> void:
 
 
 func _on_out_of_time_timeout() -> void:
-	animation_player.play(FLICKER)
+	animation_player.play(Constants.FLICKER)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == FLICKER:
+	if anim_name == Constants.FLICKER:
 		queue_free()
 
 
