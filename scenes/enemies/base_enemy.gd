@@ -29,13 +29,15 @@ var _speed: float
 var _subtype: String
 var _health_data: Dictionary
 var _speed_data: Dictionary
-var _can_shoot: bool = true
+var _can_shoot: bool = false
 var _laser_timeout: Vector2
 var _player_ref: Player
 
 
 func _ready() -> void:
 	_player_ref = _get_player_ref()
+	if not _player_ref:
+		queue_free()
 
 
 func _process(delta: float) -> void:
@@ -43,12 +45,7 @@ func _process(delta: float) -> void:
 
 
 func _get_player_ref() -> Player:
-	var nodes: Array[Node] = get_tree().get_nodes_in_group(Constants.GRP_PLAYER)
-	
-	if nodes.is_empty():
-		return null
-
-	return nodes[0]
+	return get_tree().get_first_node_in_group(Constants.GRP_PLAYER)
 
 
 func setup(s: SubType) -> void:
@@ -72,7 +69,8 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 		var bt: BaseBullet.BulletType = BaseBullet.BulletType.ENEMY_BOMB if bomb else BaseBullet.BulletType.ENEMY
 		SignalBus.on_shoot.emit(bt, dir, speed, gp)
 		_can_shoot = false
-		laser_timer.start(randf_range(_laser_timeout.x, _laser_timeout.y))
+	elif laser_timer.is_stopped():
+		Utils.set_and_start_timer(laser_timer, _laser_timeout.x, _laser_timeout.y)
 
 
 func _on_laser_timer_timeout() -> void:
