@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bgog27cmxhc6t" path="res://assets/ships/bomber_1.png" id="5_qdj8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnca0"]
-size = Vector2(40, 47)
+size = Vector2(40, 49.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efhvc"]
 atlas = ExtResource("3_qqbyg")
@@ -115,10 +115,12 @@ animations = [{
 script = ExtResource("2_gsaap")
 
 [node name="Shape" parent="CollidableObject" index="0"]
-position = Vector2(0, 5.5)
+position = Vector2(1.25, -5.46392e-08)
+rotation = -1.5708
 shape = SubResource("RectangleShape2D_fnca0")
 
 [node name="Sprite" parent="." index="1"]
+rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_bqoph")
 animation = &"blue"
 autoplay = "yellow"
@@ -128,6 +130,6 @@ flip_v = true
 autostart = true
 
 [node name="MarkerGun" type="Marker2D" parent="." index="5"]
-position = Vector2(0, 29)
+position = Vector2(28, 0)
 
 [editable path="CollidableObject"]
