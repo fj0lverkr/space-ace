@@ -116,12 +116,13 @@ animations = [{
 script = ExtResource("2_73isg")
 
 [node name="Shape" parent="CollidableObject" index="0"]
-position = Vector2(0, -1.5)
+rotation = -1.5708
 shape = SubResource("CapsuleShape2D_j4a1h")
 
 [node name="Sprite" parent="." index="1"]
+rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_bqoph")
-animation = &"yellow"
+animation = &"blue"
 autoplay = "yellow"
 flip_v = true
 
@@ -129,6 +130,6 @@ flip_v = true
 autostart = true
 
 [node name="MarkerGun" type="Marker2D" parent="." index="5"]
-position = Vector2(0, 17)
+position = Vector2(17, 0)
 
 [editable path="CollidableObject"]

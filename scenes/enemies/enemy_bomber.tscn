@@ -2,75 +2,75 @@
 
 [ext_resource type="PackedScene" uid="uid://bev4wimedk8q" path="res://scenes/enemies/base_enemy.tscn" id="1_y51lb"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy_bomber.gd" id="2_gsaap"]
-[ext_resource type="Texture2D" uid="uid://v7dynwjrgx7" path="res://assets/ships/zipper_2.png" id="3_qg5g8"]
-[ext_resource type="Texture2D" uid="uid://dq8o72248jdnc" path="res://assets/ships/zipper_3.png" id="4_jn6gp"]
-[ext_resource type="Texture2D" uid="uid://ukymmea2v7wr" path="res://assets/ships/zipper_1.png" id="5_ybrv5"]
+[ext_resource type="Texture2D" uid="uid://deo2xj2htrrka" path="res://assets/ships/bomber_2.png" id="3_qqbyg"]
+[ext_resource type="Texture2D" uid="uid://casusbbj37b2s" path="res://assets/ships/bomber_3.png" id="4_3co8f"]
+[ext_resource type="Texture2D" uid="uid://bgog27cmxhc6t" path="res://assets/ships/bomber_1.png" id="5_qdj8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnca0"]
-size = Vector2(40, 17)
+size = Vector2(40, 47)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqgqy"]
-atlas = ExtResource("3_qg5g8")
-region = Rect2(0, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_efhvc"]
+atlas = ExtResource("3_qqbyg")
+region = Rect2(0, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_08sfv"]
-atlas = ExtResource("3_qg5g8")
-region = Rect2(48, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1k8l"]
+atlas = ExtResource("3_qqbyg")
+region = Rect2(48, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nlirq"]
-atlas = ExtResource("3_qg5g8")
-region = Rect2(96, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7d84"]
+atlas = ExtResource("3_qqbyg")
+region = Rect2(96, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wv2uc"]
-atlas = ExtResource("3_qg5g8")
-region = Rect2(144, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o136l"]
+atlas = ExtResource("3_qqbyg")
+region = Rect2(144, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b2dyk"]
-atlas = ExtResource("4_jn6gp")
-region = Rect2(0, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0ded"]
+atlas = ExtResource("4_3co8f")
+region = Rect2(0, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rnice"]
-atlas = ExtResource("4_jn6gp")
-region = Rect2(48, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ouw1"]
+atlas = ExtResource("4_3co8f")
+region = Rect2(48, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81w0a"]
-atlas = ExtResource("4_jn6gp")
-region = Rect2(96, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kq6l"]
+atlas = ExtResource("4_3co8f")
+region = Rect2(96, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0wox"]
-atlas = ExtResource("4_jn6gp")
-region = Rect2(144, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp6gi"]
+atlas = ExtResource("4_3co8f")
+region = Rect2(144, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pt3x3"]
-atlas = ExtResource("5_ybrv5")
-region = Rect2(0, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yqfx"]
+atlas = ExtResource("5_qdj8c")
+region = Rect2(0, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c07ad"]
-atlas = ExtResource("5_ybrv5")
-region = Rect2(48, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox6ey"]
+atlas = ExtResource("5_qdj8c")
+region = Rect2(48, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0eil"]
-atlas = ExtResource("5_ybrv5")
-region = Rect2(96, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_v07ry"]
+atlas = ExtResource("5_qdj8c")
+region = Rect2(96, 0, 48, 58)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8eueq"]
-atlas = ExtResource("5_ybrv5")
-region = Rect2(144, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm6gi"]
+atlas = ExtResource("5_qdj8c")
+region = Rect2(144, 0, 48, 58)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bqoph"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eqgqy")
+"texture": SubResource("AtlasTexture_efhvc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_08sfv")
+"texture": SubResource("AtlasTexture_a1k8l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nlirq")
+"texture": SubResource("AtlasTexture_r7d84")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wv2uc")
+"texture": SubResource("AtlasTexture_o136l")
 }],
 "loop": true,
 "name": &"blue",
@@ -78,16 +78,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b2dyk")
+"texture": SubResource("AtlasTexture_m0ded")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rnice")
+"texture": SubResource("AtlasTexture_0ouw1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_81w0a")
+"texture": SubResource("AtlasTexture_6kq6l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j0wox")
+"texture": SubResource("AtlasTexture_vp6gi")
 }],
 "loop": true,
 "name": &"red",
@@ -95,16 +95,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pt3x3")
+"texture": SubResource("AtlasTexture_2yqfx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c07ad")
+"texture": SubResource("AtlasTexture_ox6ey")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p0eil")
+"texture": SubResource("AtlasTexture_v07ry")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8eueq")
+"texture": SubResource("AtlasTexture_sm6gi")
 }],
 "loop": true,
 "name": &"yellow",
@@ -115,16 +115,19 @@ animations = [{
 script = ExtResource("2_gsaap")
 
 [node name="Shape" parent="CollidableObject" index="0"]
-position = Vector2(0, -1.5)
+position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_fnca0")
 
 [node name="Sprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_bqoph")
-animation = &"red"
+animation = &"blue"
 autoplay = "yellow"
 flip_v = true
 
 [node name="OutOfTime" parent="." index="2"]
 autostart = true
+
+[node name="MarkerGun" type="Marker2D" parent="." index="5"]
+position = Vector2(0, 29)
 
 [editable path="CollidableObject"]

@@ -1,6 +1,9 @@
 class_name EnemyBomber
 extends BaseEnemy
 
+@onready
+var _marker_gun: Marker2D = $MarkerGun
+
 const HEALTH: Dictionary = {
 	SubType.YELLOW: 130,
 	SubType.BLUE: 190,
@@ -21,6 +24,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
+	var dir: Vector2 = _player_ref.global_position - _marker_gun.global_position
+	look_at(_player_ref.global_position)
+	_shoot(_marker_gun.global_position, true, dir)
 
 
 func setup(s: SubType) -> void:
