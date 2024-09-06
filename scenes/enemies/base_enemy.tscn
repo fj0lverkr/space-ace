@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bev4wimedk8q"]
+[gd_scene load_steps=7 format=3 uid="uid://bev4wimedk8q"]
 
 [ext_resource type="Script" path="res://scenes/enemies/base_enemy.gd" id="1_vvqcf"]
 [ext_resource type="PackedScene" uid="uid://bn3b3t3pwf5vw" path="res://scenes/collidable_object/collidable_object.tscn" id="2_7tfwu"]
+[ext_resource type="PackedScene" uid="uid://cixu3em2o0x3p" path="res://scenes/health_bar/health_bar.tscn" id="3_o2cgl"]
 
 [sub_resource type="Animation" id="Animation_6idu0"]
 length = 0.001
@@ -62,6 +63,8 @@ libraries = {
 
 [node name="LaserTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HealthBar" parent="." instance=ExtResource("3_o2cgl")]
 
 [connection signal="timeout" from="OutOfTime" to="." method="_on_out_of_time_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

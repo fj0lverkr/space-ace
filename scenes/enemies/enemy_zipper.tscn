@@ -120,7 +120,7 @@ shape = SubResource("RectangleShape2D_fnca0")
 
 [node name="Sprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_bqoph")
-animation = &"red"
+animation = &"yellow"
 autoplay = "yellow"
 flip_v = true
 
@@ -129,5 +129,11 @@ autostart = true
 
 [node name="MarkerGun" type="Marker2D" parent="." index="5"]
 position = Vector2(0, 7)
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -15.0
+offset_top = -17.0
+offset_right = 15.0
+offset_bottom = -15.0
 
 [editable path="CollidableObject"]
