@@ -44,8 +44,11 @@ func _process(delta: float) -> void:
 	global_position += Vector2.DOWN * _speed * delta
 
 
-func setup(type: PowerUp.Type) -> void:
-	_type = type
+func setup(type: Type = -1) -> void:
+	if type > -1:
+		_type = type
+	else:
+		_type = randi() % 2
 
 
 func _on_timer_timeout() -> void:

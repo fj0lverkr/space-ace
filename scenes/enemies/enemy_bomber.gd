@@ -16,6 +16,12 @@ const SPEED: Dictionary = {
 	SubType.RED: 100
 }
 
+const DROPRATES: Dictionary = {
+	SubType.YELLOW: 50,
+	SubType.BLUE: 30,
+	SubType.RED: 25,
+}
+
 
 func _ready() -> void:
 	super._ready()
@@ -32,4 +38,5 @@ func _process(delta: float) -> void:
 func setup(s: SubType) -> void:
 	_health_data = HEALTH
 	_speed_data = SPEED
+	_drop_rate_data = DROPRATES
 	super.setup(s)
