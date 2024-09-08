@@ -18,11 +18,11 @@ const LASER_TIMEOUT: Dictionary = {
 @onready
 var sprite: AnimatedSprite2D = $Sprite
 @onready
-var animation_player: AnimationPlayer = $AnimationPlayer
+var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready
-var timer: Timer = $OutOfTime
+var _laser_timer: Timer = $LaserTimer
 @onready
-var laser_timer: Timer = $LaserTimer
+var _health_bar: HealthBar = $HealthBar
 
 var _health: int
 var _speed: float
@@ -38,6 +38,8 @@ func _ready() -> void:
 	_player_ref = _get_player_ref()
 	if not _player_ref:
 		queue_free()
+
+	_health_bar.health = _health
 
 
 func _process(delta: float) -> void:
@@ -56,7 +58,7 @@ func setup(s: SubType) -> void:
 
 
 func _on_out_of_time_timeout() -> void:
-	animation_player.play(Constants.FLICKER)
+	_animation_player.play(Constants.FLICKER)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -69,8 +71,8 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 		var bt: BaseBullet.BulletType = BaseBullet.BulletType.ENEMY_BOMB if bomb else BaseBullet.BulletType.ENEMY
 		SignalBus.on_shoot.emit(bt, dir, speed, gp)
 		_can_shoot = false
-	elif laser_timer.is_stopped():
-		Utils.set_and_start_timer(laser_timer, _laser_timeout.x, _laser_timeout.y)
+	elif _laser_timer.is_stopped():
+		GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x, _laser_timeout.y)
 
 
 func _on_laser_timer_timeout() -> void:
