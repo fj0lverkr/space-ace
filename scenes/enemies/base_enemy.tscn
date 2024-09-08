@@ -66,6 +66,8 @@ one_shot = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_o2cgl")]
 
+[connection signal="on_area_entered" from="CollidableObject" to="." method="_on_area_entered"]
 [connection signal="timeout" from="OutOfTime" to="." method="_on_out_of_time_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="on_died" from="HealthBar" to="." method="_on_health_bar_on_died"]

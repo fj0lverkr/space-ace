@@ -38,8 +38,7 @@ func _ready() -> void:
 	_player_ref = _get_player_ref()
 	if not _player_ref:
 		queue_free()
-
-	_health_bar.health = _health
+	_health_bar.setup(_health, _health)
 
 
 func _process(delta: float) -> void:
@@ -77,3 +76,16 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 
 func _on_laser_timer_timeout() -> void:
 	_can_shoot = true
+
+
+func _on_area_entered(area: Area2D) -> void:
+	var damage: int
+	if area is CollidableObject:
+		damage = area.get_damage()
+	else:
+		damage = int(_health_bar.value) + 1
+	_health_bar.update_value(-damage)
+
+
+func _on_health_bar_on_died() -> void:
+	_animation_player.play(Constants.FLICKER)
