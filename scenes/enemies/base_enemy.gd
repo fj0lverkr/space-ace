@@ -88,4 +88,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_health_bar_on_died() -> void:
+	_speed = 0.0
+	SignalBus.on_explode.emit(Explosion.Type.BOOM, global_position, 2.0)
+	set_process(false)
 	_animation_player.play(Constants.FLICKER)

@@ -55,10 +55,11 @@ func _on_try_powerup(_chance: float, type: PowerUp.Type, gp: Vector2) -> void:
     call_deferred(ADD_OBJECT, pu, gp)
 
 
-func _on_explode(type: Explosion.Type, gp: Vector2) -> void:
+func _on_explode(type: Explosion.Type, gp: Vector2, scl: float = 0.5) -> void:
     var ex: Explosion = EXPLOSION.instantiate()
     ex.setup(type)
     ex.z_index = 10
+    ex.scale = Vector2(scl, scl)
     call_deferred(ADD_OBJECT, ex, gp)
 
 

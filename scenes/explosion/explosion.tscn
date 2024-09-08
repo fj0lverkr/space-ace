@@ -180,7 +180,7 @@ animations = [{
 [node name="Explosion" type="AnimatedSprite2D"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_b07go")
-animation = &"explosion"
+animation = &"boom"
 script = ExtResource("3_om4bd")
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]

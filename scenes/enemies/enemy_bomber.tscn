@@ -133,10 +133,10 @@ autostart = true
 position = Vector2(28, 0)
 
 [node name="HealthBar" parent="." index="6"]
-offset_left = -34.0
+offset_left = -36.0
 offset_top = 20.0
-offset_right = 6.0
-offset_bottom = 22.0
+offset_right = 4.0
+offset_bottom = 23.0
 rotation = -1.5708
 
 [editable path="CollidableObject"]
