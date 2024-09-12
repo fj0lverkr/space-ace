@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh25ljt1eq0di"]
+
+[ext_resource type="Script" path="res://scenes/game_ui/game_ui.gd" id="1_a88sy"]
+[ext_resource type="PackedScene" uid="uid://cixu3em2o0x3p" path="res://scenes/health_bar/health_bar.tscn" id="1_uqg2d"]
+[ext_resource type="LabelSettings" uid="uid://bslymv1e3rjua" path="res://assets/GN_32_white.tres" id="2_4njlh"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_a88sy")
+
+[node name="CR" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+color = Color(1, 0.313726, 0.32549, 0.113725)
+
+[node name="MC" type="MarginContainer" parent="CR"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="HealthBar" parent="CR/MC" instance=ExtResource("1_uqg2d")]
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ScoreLabel" type="Label" parent="CR/MC"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "000000"
+label_settings = ExtResource("2_4njlh")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="on_died" from="CR/MC/HealthBar" to="." method="_on_health_bar_on_died"]

@@ -5,6 +5,10 @@ extends Area2D
 var _speed: float = 250.0
 @export
 var _bullet_speed: float = 275
+@export
+var _max_health: int = 200
+@export
+var _start_health: int = 200
 
 @onready
 var _sprite: Sprite2D = $Sprite2D
@@ -18,6 +22,7 @@ var _gun_right: Marker2D = $GunRight
 var _bounds: Rect2
 var _last_shot_left: bool = false
 var _paused: bool = false
+var _health: int
 
 
 func _ready() -> void:
@@ -26,6 +31,7 @@ func _ready() -> void:
 	_bounds = get_viewport_rect()
 	_bounds.position += Constants.MARGIN
 	_bounds.end -= Constants.MARGIN * 2
+	_health = _start_health
 
 
 func _process(delta: float) -> void:
@@ -63,3 +69,31 @@ func _shoot() -> void:
 	_last_shot_left = !_last_shot_left
 	var gp: Vector2 = _gun_left.global_position if _last_shot_left else _gun_right.global_position
 	SignalBus.on_shoot.emit(BaseBullet.BulletType.PLAYER, Vector2.UP, _bullet_speed, gp)
+
+
+func get_health() -> int:
+	return _health
+
+
+func get_start_health() -> int:
+	return _start_health
+
+
+func get_max_health() -> int:
+	return _max_health
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is PowerUp:
+		return
+	
+	var damage: int
+	if area is BaseBullet:
+		damage = area.get_damage()
+	else:
+		damage = _max_health
+	SignalBus.on_player_hit.emit(damage)
+
+
+func die() -> void:
+	queue_free()

@@ -73,6 +73,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		queue_free()
 
 
-func _on_area_entered(_area: Area2D) -> void:
-	SignalBus.on_get_powerup.emit(_type)
-	_deactivate(false)
+func _on_area_entered(area: Area2D) -> void:
+	if area is Player:
+		SignalBus.on_get_powerup.emit(_type)
+		_deactivate(false)
