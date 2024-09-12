@@ -1,7 +1,7 @@
 class_name PowerUp
 extends CollidableObject
 
-enum Type {POWERUP, SHIELD}
+enum PowerUpType {POWERUP, SHIELD, NONE}
 
 @export
 var _life_time: float = 10.0
@@ -22,11 +22,11 @@ const TEX_POWERUP: String = "res://assets/misc/powerupGreen_bolt.png"
 const TEX_SHIELD: String = "res://assets/misc/shield_gold.png"
 
 var _textures: Dictionary = {
-	PowerUp.Type.POWERUP: TEX_POWERUP,
-	PowerUp.Type.SHIELD: TEX_SHIELD,
+	PowerUp.PowerUpType.POWERUP: TEX_POWERUP,
+	PowerUp.PowerUpType.SHIELD: TEX_SHIELD,
 }
 
-var _type: PowerUp.Type
+var _type: PowerUp.PowerUpType
 
 
 func _ready() -> void:
@@ -44,11 +44,16 @@ func _process(delta: float) -> void:
 	global_position += Vector2.DOWN * _speed * delta
 
 
-func setup(type: Type = -1) -> void:
-	if type > -1:
+func setup(type: PowerUpType = PowerUpType.NONE) -> void:
+	if type != PowerUpType.NONE:
 		_type = type
 	else:
-		_type = randi() % 2
+		var t: int = randi() % 2
+		match t:
+			0:
+				_type = PowerUpType.POWERUP
+			1:
+				_type = PowerUpType.SHIELD
 
 
 func _on_timer_timeout() -> void:

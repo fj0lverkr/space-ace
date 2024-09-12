@@ -30,7 +30,7 @@ func activate() -> void:
 	_is_active = true
 	_hits_left = _max_hits
 	_collission_shape.call_deferred("set_disabled", false)
-	SoundManager.play_pu_activate(_sound, PowerUp.Type.SHIELD)
+	SoundManager.play_pu_activate(_sound, PowerUp.PowerUpType.SHIELD)
 	show()
 	_timer.start()
 
@@ -61,8 +61,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		hide()
 
 
-func _on_get_powerup(pt: PowerUp.Type) -> void:
-	if pt != PowerUp.Type.SHIELD:
+func _on_get_powerup(pt: PowerUp.PowerUpType) -> void:
+	if pt != PowerUp.PowerUpType.SHIELD:
 		return
 
 	if _is_active:

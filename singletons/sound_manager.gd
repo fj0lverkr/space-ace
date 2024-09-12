@@ -14,8 +14,8 @@ const MISC_DOOR: AudioStream = preload("res://assets/sounds/misc/sci-fi-door.wav
 # POWERUP
 const PU_DEPLOY: AudioStream = preload("res://assets/sounds/powerup/power_up_deploy.wav")
 const PU_SFX: Dictionary = {
-	PowerUp.Type.SHIELD: preload("res://assets/sounds/powerup/shield_18.wav"),
-	PowerUp.Type.POWERUP: preload("res://assets/sounds/powerup/health_16.wav"),
+	PowerUp.PowerUpType.SHIELD: preload("res://assets/sounds/powerup/shield_18.wav"),
+	PowerUp.PowerUpType.POWERUP: preload("res://assets/sounds/powerup/health_16.wav"),
 }
 
 # LASERS + EXPLOSIONS
@@ -84,7 +84,7 @@ func play_pu_deploy(player: AudioStreamPlayer2D) -> void:
 	player.play()
 
 
-func play_pu_activate(player: AudioStreamPlayer2D, which: PowerUp.Type) -> void:
+func play_pu_activate(player: AudioStreamPlayer2D, which: PowerUp.PowerUpType) -> void:
 	if not PU_SFX.has(which):
 		return
 
