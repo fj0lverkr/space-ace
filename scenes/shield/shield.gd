@@ -7,8 +7,6 @@ var _timer: Timer = $Timer
 var _collission_shape: CollisionShape2D = $CollisionShape2D
 @onready
 var _animation_player: AnimationPlayer = $AnimationPlayer
-@onready
-var _sound: AudioStreamPlayer2D = $Sound
 
 @export
 var _max_hits: int = 5
@@ -30,7 +28,6 @@ func activate() -> void:
 	_is_active = true
 	_hits_left = _max_hits
 	_collission_shape.call_deferred("set_disabled", false)
-	SoundManager.play_pu_activate(_sound, PowerUp.PowerUpType.SHIELD)
 	show()
 	_timer.start()
 

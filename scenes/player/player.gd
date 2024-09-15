@@ -1,6 +1,9 @@
 class_name Player
 extends Area2D
 
+const VFXHEAL: String = "heal"
+const VFXDIE: String = "die"
+
 @export
 var _speed: float = 250.0
 @export
@@ -9,11 +12,17 @@ var _bullet_speed: float = 275
 var _max_health: int = 200
 @export
 var _start_health: int = 200
+@export
+var _powerup_health_boost: int = 15
 
 @onready
 var _sprite: Sprite2D = $Sprite2D
 @onready
 var _animation_player: AnimationPlayer = $AnimationPlayer
+@onready
+var _vfx_player: AnimationPlayer = $EffectsPlayer
+@onready
+var _sfx_player: AudioStreamPlayer2D = $Sfx
 @onready
 var _gun_left: Marker2D = $GunLeft
 @onready
@@ -28,6 +37,7 @@ var _health: int
 func _ready() -> void:
 	SignalBus.on_pause.connect(_toggle_pause.bind(true))
 	SignalBus.on_continue.connect(_toggle_pause.bind(false))
+	SignalBus.on_get_powerup.connect(_on_get_powerup)
 	_bounds = get_viewport_rect()
 	_bounds.position += Constants.MARGIN
 	_bounds.end -= Constants.MARGIN * 2
@@ -85,6 +95,7 @@ func get_max_health() -> int:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PowerUp:
+		# this is handled by the PowerUp object
 		return
 	
 	var damage: int
@@ -94,6 +105,17 @@ func _on_area_entered(area: Area2D) -> void:
 		damage = _max_health
 	SignalBus.on_player_hit.emit(damage)
 
+
+func _on_get_powerup(type: PowerUp.PowerUpType) -> void:
+	SoundManager.play_pu_activate(_sfx_player, type)
+	
+	if type != PowerUp.PowerUpType.POWERUP:
+		# this is handled by the shield object
+		return
+	
+	_vfx_player.play(VFXHEAL)
+	SignalBus.on_player_heal.emit(_powerup_health_boost)
+	
 
 func die() -> void:
 	queue_free()

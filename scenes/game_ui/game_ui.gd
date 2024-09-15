@@ -15,6 +15,7 @@ func _ready() -> void:
 
 	_health_bar.setup(_player_ref.get_start_health(), _player_ref.get_max_health())
 	SignalBus.on_player_hit.connect(_on_player_hit)
+	SignalBus.on_player_heal.connect(_on_player_heal)
 
 
 func _get_player_ref() -> Player:
@@ -24,6 +25,9 @@ func _get_player_ref() -> Player:
 func _on_player_hit(damage: int) -> void:
 	_health_bar.update_value(-damage)
 
+
+func _on_player_heal(health: int) -> void:
+	_health_bar.update_value(health)
 
 func _on_health_bar_on_died() -> void:
 	# TODO animate defeat

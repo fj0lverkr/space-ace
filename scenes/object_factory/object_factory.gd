@@ -12,6 +12,16 @@ const BIOMECH: PackedScene = preload("res://scenes/enemies/enemy_bio.tscn")
 const ADD_OBJECT: String = "_add_object"
 const ADD_PATH_FOLLOWER: String = "_add_follower_to_path"
 
+@export
+var _override_droprates: bool = false
+@export
+var _override_droprates_pct: float = 100:
+    set(v):
+        if v < 0.0:
+            _override_droprates_pct = 0
+        else:
+            _override_droprates_pct = v
+
 
 func _ready() -> void:
     SignalBus.on_shoot.connect(_on_shoot)
@@ -43,11 +53,13 @@ func _on_shoot(bt: BaseBullet.BulletType, dir: Vector2, speed: float, gp: Vector
     call_deferred(ADD_OBJECT, scene, gp)
 
 
-func _on_try_powerup(_chance: float, gp: Vector2, type: PowerUp.PowerUpType = PowerUp.PowerUpType.NONE) -> void:
-    _chance = 100.0 if _chance >= 100.0 else _chance
-    _chance = 0.0 if _chance <= 0.0 else _chance
+func _on_try_powerup(chance: float, gp: Vector2, type: PowerUp.PowerUpType = PowerUp.PowerUpType.NONE) -> void:
+    if _override_droprates:
+        chance = _override_droprates_pct
+    chance = 100.0 if chance >= 100.0 else chance
+    chance = 0.0 if chance <= 0.0 else chance
     var dice_roll: float = randf_range(0, 100)
-    if dice_roll > _chance:
+    if dice_roll > chance:
         return
     
     var pu: PowerUp = POWER_UP.instantiate()
