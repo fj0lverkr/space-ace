@@ -30,9 +30,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	var dir: Vector2 = _player_ref.global_position - _marker_gun.global_position
-	look_at(_player_ref.global_position)
-	_shoot(_marker_gun.global_position, true, dir)
+	if _player_ref != null:
+		var dir: Vector2 = _player_ref.global_position - _marker_gun.global_position
+		look_at(_player_ref.global_position)
+		_shoot(_marker_gun.global_position, false, dir)
+	else:
+		look_at(Vector2.DOWN)
 
 
 func setup(s: SubType) -> void:
