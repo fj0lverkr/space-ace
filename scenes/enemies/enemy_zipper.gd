@@ -16,11 +16,16 @@ const SPEED: Dictionary = {
 	SubType.RED: 150
 }
 
-
 const DROPRATES: Dictionary = {
 	SubType.YELLOW: 50,
 	SubType.BLUE: 30,
 	SubType.RED: 25,
+}
+
+const POINTS: Dictionary = {
+	SubType.YELLOW: 1,
+	SubType.BLUE: 3,
+	SubType.RED: 5,
 }
 
 
@@ -38,4 +43,5 @@ func setup(s: SubType) -> void:
 	_health_data = HEALTH
 	_speed_data = SPEED
 	_drop_rate_data = DROPRATES
+	_points_data = POINTS
 	super.setup(s)

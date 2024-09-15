@@ -34,6 +34,8 @@ var _laser_timeout: Vector2
 var _player_ref: Player
 var _drop_rate: float
 var _drop_rate_data: Dictionary
+var _points: int
+var _points_data: Dictionary
 
 
 func _ready() -> void:
@@ -57,6 +59,7 @@ func setup(s: SubType) -> void:
 	_subtype = SUBTYPE[s]
 	_laser_timeout = LASER_TIMEOUT[s]
 	_drop_rate = _drop_rate_data[s]
+	_points = _points_data[s]
 
 
 func _on_out_of_time_timeout() -> void:
@@ -93,6 +96,7 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_health_bar_on_died() -> void:
 	_speed = 0.0
 	SignalBus.on_explode.emit(Explosion.Type.BOOM, global_position, 2.0)
+	SignalBus.on_score_points.emit(_points)
 	set_process(false)
 	SignalBus.on_try_powerup.emit(_drop_rate, global_position)
 	_animation_player.play(Constants.FLICKER)

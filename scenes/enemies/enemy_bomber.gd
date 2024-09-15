@@ -22,6 +22,12 @@ const DROPRATES: Dictionary = {
 	SubType.RED: 25,
 }
 
+const POINTS: Dictionary = {
+	SubType.YELLOW: 3,
+	SubType.BLUE: 5,
+	SubType.RED: 10,
+}
+
 
 func _ready() -> void:
 	super._ready()
@@ -42,4 +48,6 @@ func setup(s: SubType) -> void:
 	_health_data = HEALTH
 	_speed_data = SPEED
 	_drop_rate_data = DROPRATES
+	_points_data = POINTS
+
 	super.setup(s)

@@ -19,6 +19,12 @@ const DROPRATES: Dictionary = {
 	SubType.RED: 25,
 }
 
+const POINTS: Dictionary = {
+	SubType.YELLOW: 5,
+	SubType.BLUE: 10,
+	SubType.RED: 15,
+}
+
 @onready
 var _marker_gun: Marker2D = $MarkerGun
 
@@ -42,4 +48,6 @@ func setup(s: SubType) -> void:
 	_health_data = HEALTH
 	_speed_data = SPEED
 	_drop_rate_data = DROPRATES
+	_points_data = POINTS
+
 	super.setup(s)
