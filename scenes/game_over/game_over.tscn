@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1s37n2n08dy"]
+
+[ext_resource type="LabelSettings" uid="uid://cb2u5o7m8jgyn" path="res://assets/LG_Title.tres" id="1_r6opf"]
+[ext_resource type="LabelSettings" uid="uid://bslymv1e3rjua" path="res://assets/GN_32_white.tres" id="2_fjsah"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823004, 7.26774e-06, 0.381535, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = ExtResource("1_r6opf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Score: hi-score:"
+label_settings = ExtResource("2_fjsah")
+horizontal_alignment = 1
+vertical_alignment = 1
