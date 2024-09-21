@@ -64,6 +64,7 @@ func _on_try_powerup(chance: float, gp: Vector2, type: PowerUp.PowerUpType = Pow
     
     var pu: PowerUp = POWER_UP.instantiate()
     pu.setup(type)
+    pu.add_to_group(Constants.GRP_PU)
     call_deferred(ADD_OBJECT, pu, gp)
 
 
@@ -83,4 +84,5 @@ func _on_request_enemy(type: BaseEnemy.Type, subtype: BaseEnemy.SubType, path: P
         BaseEnemy.Type.BIO:
             enemy = BIOMECH.instantiate()
     enemy.setup(subtype)
+    enemy.add_to_group(Constants.GRP_ENEMIES)
     call_deferred(ADD_PATH_FOLLOWER, enemy, path)

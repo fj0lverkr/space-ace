@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv6eyxurfctkh"]
+[gd_scene load_steps=10 format=3 uid="uid://bv6eyxurfctkh"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_mgefi"]
 [ext_resource type="PackedScene" uid="uid://bs8qampxx75ga" path="res://scenes/pause/pause.tscn" id="2_dk1hs"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dvfmgnuboyhc0" path="res://scenes/object_factory/object_factory.tscn" id="5_lifmh"]
 [ext_resource type="PackedScene" uid="uid://dh25ljt1eq0di" path="res://scenes/game_ui/game_ui.tscn" id="6_otpu6"]
 [ext_resource type="PackedScene" uid="uid://bs20cdkk1ucxy" path="res://scenes/camera_shake/camera_shake.tscn" id="7_beaod"]
+[ext_resource type="PackedScene" uid="uid://c1s37n2n08dy" path="res://scenes/game_over/game_over.tscn" id="7_j41uk"]
 
 [sub_resource type="Curve2D" id="Curve2D_cosep"]
 _data = {
@@ -37,5 +38,8 @@ curve = SubResource("Curve2D_cosep")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_otpu6")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("7_j41uk")]
+visible = false
 
 [node name="CameraShake" parent="." instance=ExtResource("7_beaod")]

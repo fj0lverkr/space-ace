@@ -4,6 +4,7 @@ const MAIN: PackedScene = preload("res://scenes/main/main.tscn")
 const LEVEL: PackedScene = preload("res://scenes/level/level.tscn")
 
 var _score: int = 0
+var _game_over: bool = false
 
 
 func _ready() -> void:
@@ -24,3 +25,11 @@ func get_score() -> int:
 
 func _on_score_points(points: int) -> void:
 	_score += points
+
+
+func set_game_over(is_over: bool) -> void:
+	_game_over = is_over
+
+
+func get_game_over() -> bool:
+	return _game_over

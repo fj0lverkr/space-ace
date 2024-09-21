@@ -118,4 +118,5 @@ func _on_get_powerup(type: PowerUp.PowerUpType) -> void:
 	
 
 func die() -> void:
+	SignalBus.on_game_over.emit()
 	queue_free()

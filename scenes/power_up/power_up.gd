@@ -57,10 +57,10 @@ func setup(type: PowerUpType = PowerUpType.NONE) -> void:
 
 
 func _on_timer_timeout() -> void:
-	_deactivate()
+	deactivate()
 
 
-func _deactivate(do_flicker: bool = true) -> void:
+func deactivate(do_flicker: bool = true) -> void:
 	_timer.stop()
 	if do_flicker:
 		_animation.play(FLICKER)
@@ -76,4 +76,4 @@ func _on_animation_finished(anim_name: StringName) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Player:
 		SignalBus.on_get_powerup.emit(_type)
-		_deactivate(false)
+		deactivate(false)

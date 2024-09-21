@@ -10,3 +10,4 @@ signal on_request_enemy(type: BaseEnemy.Type, variant: BaseEnemy.SubType, path: 
 signal on_player_hit(damage: int)
 signal on_player_heal(health: int)
 signal on_score_points(points: int)
+signal on_game_over()
