@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv6eyxurfctkh"]
+[gd_scene load_steps=9 format=3 uid="uid://bv6eyxurfctkh"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_mgefi"]
 [ext_resource type="PackedScene" uid="uid://bs8qampxx75ga" path="res://scenes/pause/pause.tscn" id="2_dk1hs"]
@@ -8,12 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dh25ljt1eq0di" path="res://scenes/game_ui/game_ui.tscn" id="6_otpu6"]
 [ext_resource type="PackedScene" uid="uid://bs20cdkk1ucxy" path="res://scenes/camera_shake/camera_shake.tscn" id="7_beaod"]
 [ext_resource type="PackedScene" uid="uid://c1s37n2n08dy" path="res://scenes/game_over/game_over.tscn" id="7_j41uk"]
-
-[sub_resource type="Curve2D" id="Curve2D_cosep"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 20, 27, 0, 0, 0, 0, 36, 27, 0, 0, 0, 0, 574, 365, 0, 0, 0, 0, 91, 394, 0, 0, 0, 0, 33, 294, 0, 0, 0, 0, 110, 253, 0, 0, 0, 0, 248, 294, 0, 0, 0, 0, 370, 327, 0, 0, 0, 0, 501, 435, 0, 0, 0, 0, 511, 242, 0, 0, 0, 0, 282, 260, 0, 0, 0, 0, 84, 200, 0, 0, 0, 0, 293, 134, 0, 0, 0, 0, 457, 188, 0, 0, 0, 0, 531, 186, 0, 0, 0, 0, 555, 121, 0, 0, 0, 0, 607, 80, 0, 0, 0, 0, 516, 71, 0, 0, 0, 0, 370, 67, 0, 0, 0, 0, 413, 114, 0, 0, 0, 0, 427, 214, 0, 0, 0, 0, 228, 201, 0, 0, 0, 0, 110, 157, 0, 0, 0, 0, 252, 96, 0, 0, 0, 0, 338, 108, 0, 0, 0, 0, 559, 277, 0, 0, 0, 0, 104, 295, 0, 0, 0, 0, 58, 182, 0, 0, 0, 0, 99, 125, 0, 0, 0, 0, 197, 60, 0, 0, 0, 0, 20, 27)
-}
-point_count = 31
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mgefi")
@@ -30,10 +24,6 @@ position = Vector2(322, 396)
 _override_droprates = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-
-[node name="TempPath" type="Path2D" parent="."]
-position = Vector2(4, 3)
-curve = SubResource("Curve2D_cosep")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

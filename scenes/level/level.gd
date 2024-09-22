@@ -4,8 +4,6 @@ extends Node2D
 var _pause_overlay: CanvasLayer = $Pause
 @onready
 var _bgm_player: AudioStreamPlayer = $BGM
-@onready
-var _remove_me: Path2D = $TempPath
 
 
 func _ready() -> void:
@@ -15,9 +13,8 @@ func _ready() -> void:
 	SignalBus.on_continue.connect(_toggle_pauze.bind(false))
 	SignalBus.on_game_over.connect(_on_game_over)
 
-	# DEBUG
-	SignalBus.on_request_enemy.emit(BaseEnemy.Type.ZIPPER, BaseEnemy.SubType.RED, _remove_me)
-	SignalBus.on_request_enemy.emit(BaseEnemy.Type.BIO, BaseEnemy.SubType.YELLOW, _remove_me)
+	# TODO cleanup these calls after the wave manager is implemented.
+	# SignalBus.on_request_enemy.emit(BaseEnemy.Type.ZIPPER, BaseEnemy.SubType.RED, _remove_me)
 
 
 func _process(delta: float) -> void:
