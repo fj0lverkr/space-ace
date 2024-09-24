@@ -22,7 +22,6 @@ visible = false
 position = Vector2(322, 396)
 
 [node name="ObjectFactory" parent="." instance=ExtResource("5_lifmh")]
-_override_droprates = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 
