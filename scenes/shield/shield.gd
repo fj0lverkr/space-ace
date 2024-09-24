@@ -48,8 +48,8 @@ func _on_timer_timeout() -> void:
 	_deactivate()
 
 
-func _on_area_entered(_area: Area2D) -> void:
-	_hits_left -= 1
+func _on_area_entered(area: Area2D) -> void:
+	_hits_left = _hits_left - 1 if area is BaseBullet else 0
 	_animation_player.play("hit")
 	if _hits_left == 0:
 		_deactivate()
