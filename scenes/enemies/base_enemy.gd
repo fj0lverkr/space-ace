@@ -82,7 +82,8 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 		GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x, _laser_timeout.y)
 
 
-func _disable() -> void:
+func _disable(wt: float = 0.0) -> void:
+	await get_tree().create_timer(wt).timeout
 	set_process(false)
 	_can_shoot = false
 	_laser_timer.stop()
@@ -117,7 +118,7 @@ func _on_health_bar_on_died() -> void:
 
 
 func _on_screen_exited() -> void:
-	_disable()
+	_disable(2.5)
 	_oob_timer.start()
 
 
