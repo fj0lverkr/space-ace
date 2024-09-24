@@ -8,6 +8,7 @@ const POWER_UP: PackedScene = preload("res://scenes/power_up/power_up.tscn")
 const EXPLOSION: PackedScene = preload("res://scenes/explosion/explosion.tscn")
 const ZIPPER: PackedScene = preload("res://scenes/enemies/enemy_zipper.tscn")
 const BIOMECH: PackedScene = preload("res://scenes/enemies/enemy_bio.tscn")
+const BOMBER: PackedScene = preload("res://scenes/enemies/enemy_bomber.tscn")
 
 const ADD_OBJECT: String = "_add_object"
 const ADD_PATH_FOLLOWER: String = "_add_follower_to_path"
@@ -83,6 +84,8 @@ func _on_request_enemy(type: BaseEnemy.Type, subtype: BaseEnemy.SubType, path: P
             enemy = ZIPPER.instantiate()
         BaseEnemy.Type.BIO:
             enemy = BIOMECH.instantiate()
+        BaseEnemy.Type.BOMBER:
+            enemy = BOMBER.instantiate()
     enemy.setup(subtype)
     enemy.add_to_group(Constants.GRP_ENEMIES)
     call_deferred(ADD_PATH_FOLLOWER, enemy, path)
