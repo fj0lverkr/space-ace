@@ -23,6 +23,8 @@ var _animation_player: AnimationPlayer = $AnimationPlayer
 var _laser_timer: Timer = $LaserTimer
 @onready
 var _health_bar: HealthBar = $HealthBar
+@onready
+var _oob_timer: Timer = $OutOfTime
 
 var _health: int
 var _speed: float
@@ -63,7 +65,7 @@ func setup(s: SubType) -> void:
 
 
 func _on_out_of_time_timeout() -> void:
-	_animation_player.play(Constants.FLICKER)
+	queue_free()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -78,6 +80,18 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 		_can_shoot = false
 	elif _laser_timer.is_stopped():
 		GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x, _laser_timeout.y)
+
+
+func _disable() -> void:
+	set_process(false)
+	_can_shoot = false
+	_laser_timer.stop()
+
+
+func _enable() -> void:
+	_oob_timer.stop()
+	set_process(true)
+	_laser_timer.start()
 
 
 func _on_laser_timer_timeout() -> void:
@@ -97,6 +111,15 @@ func _on_health_bar_on_died() -> void:
 	_speed = 0.0
 	SignalBus.on_explode.emit(Explosion.Type.BOOM, global_position, 2.0)
 	SignalBus.on_score_points.emit(_points)
-	set_process(false)
+	_disable()
 	SignalBus.on_try_powerup.emit(_drop_rate, global_position)
 	_animation_player.play(Constants.FLICKER)
+
+
+func _on_screen_exited() -> void:
+	_disable()
+	_oob_timer.start()
+
+
+func _on_screen_entered() -> void:
+	_enable()

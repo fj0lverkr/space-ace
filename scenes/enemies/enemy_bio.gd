@@ -2,9 +2,9 @@ class_name EnemyBio
 extends BaseEnemy
 
 const HEALTH: Dictionary = {
-	SubType.YELLOW: 120,
-	SubType.BLUE: 175,
-	SubType.RED: 250,
+	SubType.YELLOW: 20,
+	SubType.BLUE: 30,
+	SubType.RED: 50,
 }
 
 const SPEED: Dictionary = {
@@ -14,9 +14,9 @@ const SPEED: Dictionary = {
 }
 
 const DROPRATES: Dictionary = {
-	SubType.YELLOW: 50,
-	SubType.BLUE: 30,
-	SubType.RED: 25,
+	SubType.YELLOW: 30,
+	SubType.BLUE: 25,
+	SubType.RED: 15,
 }
 
 const POINTS: Dictionary = {

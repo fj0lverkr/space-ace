@@ -5,19 +5,19 @@ extends BaseEnemy
 var _marker_gun: Marker2D = $MarkerGun
 
 const HEALTH: Dictionary = {
-	SubType.YELLOW: 130,
-	SubType.BLUE: 190,
-	SubType.RED: 255
+	SubType.YELLOW: 15,
+	SubType.BLUE: 20,
+	SubType.RED: 25,
 }
 
 const SPEED: Dictionary = {
 	SubType.YELLOW: 60,
 	SubType.BLUE: 80,
-	SubType.RED: 100
+	SubType.RED: 100,
 }
 
 const DROPRATES: Dictionary = {
-	SubType.YELLOW: 50,
+	SubType.YELLOW: 40,
 	SubType.BLUE: 30,
 	SubType.RED: 25,
 }
