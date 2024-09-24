@@ -32,12 +32,14 @@ var _bounds: Rect2
 var _last_shot_left: bool = false
 var _paused: bool = false
 var _health: int
+var _has_shield: bool = false
 
 
 func _ready() -> void:
 	SignalBus.on_pause.connect(_toggle_pause.bind(true))
 	SignalBus.on_continue.connect(_toggle_pause.bind(false))
 	SignalBus.on_get_powerup.connect(_on_get_powerup)
+	SignalBus.on_shield_disable.connect(_on_shield_disable)
 	_bounds = get_viewport_rect()
 	_bounds.position += Constants.MARGIN
 	_bounds.end -= Constants.MARGIN * 2
@@ -102,6 +104,9 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is BaseBullet:
 		damage = area.get_damage()
 	else:
+		if _has_shield:
+			return
+
 		damage = _max_health
 	SignalBus.on_player_hit.emit(damage)
 
@@ -110,12 +115,16 @@ func _on_get_powerup(type: PowerUp.PowerUpType) -> void:
 	SoundManager.play_pu_activate(_sfx_player, type)
 	
 	if type != PowerUp.PowerUpType.POWERUP:
-		# this is handled by the shield object
+		_has_shield = true
 		return
 	
 	_vfx_player.play(VFXHEAL)
 	SignalBus.on_player_heal.emit(_powerup_health_boost)
-	
+
+
+func _on_shield_disable() -> void:
+	_has_shield = false
+
 
 func die() -> void:
 	SignalBus.on_game_over.emit()

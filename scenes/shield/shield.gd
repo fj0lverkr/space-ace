@@ -41,6 +41,8 @@ func _deactivate(do_flicker: bool = true) -> void:
 	else:
 		hide()
 
+	SignalBus.on_shield_disable.emit()
+
 
 func _on_timer_timeout() -> void:
 	_deactivate()
