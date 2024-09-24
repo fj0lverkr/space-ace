@@ -95,6 +95,10 @@ func _enable() -> void:
 	_laser_timer.start()
 
 
+func update_speed(by: float) -> void:
+	_speed *= by
+
+
 func _on_laser_timer_timeout() -> void:
 	_can_shoot = true
 

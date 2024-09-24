@@ -77,7 +77,7 @@ func _on_explode(type: Explosion.Type, gp: Vector2, scl: float = 0.5) -> void:
     call_deferred(ADD_OBJECT, ex, gp)
 
 
-func _on_request_enemy(type: BaseEnemy.Type, subtype: BaseEnemy.SubType, path: Path2D) -> void:
+func _on_request_enemy(type: BaseEnemy.Type, subtype: BaseEnemy.SubType, path: Path2D, speed_modifier: float = 1.0) -> void:
     var enemy: BaseEnemy
     match type:
         BaseEnemy.Type.ZIPPER:
@@ -87,5 +87,6 @@ func _on_request_enemy(type: BaseEnemy.Type, subtype: BaseEnemy.SubType, path: P
         BaseEnemy.Type.BOMBER:
             enemy = BOMBER.instantiate()
     enemy.setup(subtype)
+    enemy.update_speed(speed_modifier)
     enemy.add_to_group(Constants.GRP_ENEMIES)
     call_deferred(ADD_PATH_FOLLOWER, enemy, path)
