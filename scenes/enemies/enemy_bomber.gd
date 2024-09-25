@@ -17,9 +17,9 @@ const SPEED: Dictionary = {
 }
 
 const DROPRATES: Dictionary = {
-	SubType.YELLOW: 40,
-	SubType.BLUE: 30,
-	SubType.RED: 25,
+	SubType.YELLOW: 30,
+	SubType.BLUE: 20,
+	SubType.RED: 15,
 }
 
 const POINTS: Dictionary = {
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	if _player_ref != null:
 		var dir: Vector2 = _player_ref.global_position - _marker_gun.global_position
 		look_at(_player_ref.global_position)
-		_shoot(_marker_gun.global_position, false, dir)
+		_shoot(_marker_gun.global_position, true, dir)
 	else:
 		look_at(Vector2.DOWN)
 

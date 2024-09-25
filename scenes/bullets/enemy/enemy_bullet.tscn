@@ -12,6 +12,7 @@ height = 16.0
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("2_4ggrc")
+_damage = 23
 
 [node name="Sprite2D" parent="." index="0"]
 rotation = 1.5708
