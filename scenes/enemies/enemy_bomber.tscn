@@ -129,6 +129,9 @@ flip_v = true
 [node name="OutOfTime" parent="." index="2"]
 autostart = true
 
+[node name="LaserTimer" parent="." index="4"]
+wait_time = 15.0
+
 [node name="MarkerGun" type="Marker2D" parent="." index="5"]
 position = Vector2(28, 0)
 

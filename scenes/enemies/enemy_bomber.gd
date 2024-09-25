@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	if _player_ref != null:
 		var dir: Vector2 = _player_ref.global_position - _marker_gun.global_position
 		look_at(_player_ref.global_position)
-		_shoot(_marker_gun.global_position, true, dir, 100)
+		_shoot(_marker_gun.global_position, true, dir, 95)
 	else:
 		look_at(Vector2.DOWN)
 
