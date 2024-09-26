@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1o7ptstxwtgh"]
+
+[ext_resource type="Script" path="res://scenes/enemies/saucer.gd" id="1_1ojet"]
+
+[node name="Saucer" type="PathFollow2D"]
+script = ExtResource("1_1ojet")

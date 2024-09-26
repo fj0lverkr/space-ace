@@ -1,7 +1,7 @@
 class_name BaseEnemy
 extends PathFollow2D
 
-enum Type {ZIPPER, BIO, BOMBER}
+enum Type {ZIPPER, BIO, BOMBER, SAUCER}
 enum SubType {YELLOW, BLUE, RED}
 
 const SUBTYPE: Dictionary = {
