@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1o7ptstxwtgh"]
+[gd_scene load_steps=5 format=3 uid="uid://c1o7ptstxwtgh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/saucer.gd" id="1_1ojet"]
+[ext_resource type="Texture2D" uid="uid://cqcsfvvhdimll" path="res://assets/ships/saucer_1.png" id="2_1v8nr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnhkf"]
+atlas = ExtResource("2_1v8nr")
+region = Rect2(0, 0, 96, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xpftq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnhkf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Saucer" type="PathFollow2D"]
 script = ExtResource("1_1ojet")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xpftq")
