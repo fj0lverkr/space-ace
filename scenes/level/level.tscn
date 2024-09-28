@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv6eyxurfctkh"]
+[gd_scene load_steps=11 format=3 uid="uid://bv6eyxurfctkh"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_mgefi"]
 [ext_resource type="PackedScene" uid="uid://bs8qampxx75ga" path="res://scenes/pause/pause.tscn" id="2_dk1hs"]
@@ -8,7 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://dh25ljt1eq0di" path="res://scenes/game_ui/game_ui.tscn" id="6_otpu6"]
 [ext_resource type="PackedScene" uid="uid://bs20cdkk1ucxy" path="res://scenes/camera_shake/camera_shake.tscn" id="7_beaod"]
 [ext_resource type="PackedScene" uid="uid://c1s37n2n08dy" path="res://scenes/game_over/game_over.tscn" id="7_j41uk"]
-[ext_resource type="PackedScene" uid="uid://bc4pe4ua8qo1n" path="res://scenes/wave_manager/wave_manager.tscn" id="9_v4idx"]
+[ext_resource type="PackedScene" uid="uid://orgjesptr8lq" path="res://scenes/enemies/saucer.tscn" id="9_asw5q"]
+
+[sub_resource type="Curve2D" id="Curve2D_tmsy6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -43, 78, -312, -1, 312, 1, 348, 184, 0, 0, 0, 0, 721, 34)
+}
+point_count = 3
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mgefi")
@@ -34,4 +40,9 @@ visible = false
 
 [node name="CameraShake" parent="." instance=ExtResource("7_beaod")]
 
-[node name="WaveManager" parent="." instance=ExtResource("9_v4idx")]
+[node name="SaucerTest" type="Path2D" parent="."]
+position = Vector2(-32, 16)
+curve = SubResource("Curve2D_tmsy6")
+
+[node name="Saucer" parent="SaucerTest" instance=ExtResource("9_asw5q")]
+position = Vector2(-43, 78)
