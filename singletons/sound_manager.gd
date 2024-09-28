@@ -92,6 +92,11 @@ func play_pu_activate(player: AudioStreamPlayer2D, which: PowerUp.PowerUpType) -
 	player.play()
 
 
+func play_saucer_open(player: AudioStreamPlayer2D) -> void:
+	player.stream = MISC_DOOR
+	player.play()
+
+
 func play_by_type(player: AudioStreamPlayer2D, type: SoundType, index: int = -1) -> void:
 	if not _sound_data.has(type):
 		return
