@@ -1,12 +1,160 @@
-[gd_scene load_steps=4 format=3 uid="uid://orgjesptr8lq"]
+[gd_scene load_steps=18 format=3 uid="uid://orgjesptr8lq"]
 
 [ext_resource type="Script" path="res://scenes/collidable_object/collidable_object.gd" id="1_o2mow"]
 [ext_resource type="Texture2D" uid="uid://cqcsfvvhdimll" path="res://assets/ships/saucer_1.png" id="2_vaq4n"]
+[ext_resource type="Script" path="res://scenes/health_bar/health_bar.gd" id="3_fcpvy"]
+
+[sub_resource type="GDScript" id="GDScript_g0ned"]
+script/source = "class_name Saucer
+extends PathFollow2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_scjs5"]
 radius = 37.0
 
+[sub_resource type="Animation" id="Animation_a1mkh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollidableObject:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollidableObject/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollidableObject/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iq6p1"]
+resource_name = "spin"
+length = 5.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollidableObject:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_6hyma"]
+resource_name = "shoot"
+length = 3.2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollidableObject/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 5, 4, 5, 6, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_5dpj0"]
+resource_name = "die"
+length = 1.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollidableObject/Sprite2D:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wi13k"]
+_data = {
+"RESET": SubResource("Animation_a1mkh"),
+"die": SubResource("Animation_5dpj0"),
+"shoot": SubResource("Animation_6hyma"),
+"spin": SubResource("Animation_iq6p1")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ij2cl"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hixbl"]
+animation = &"shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mnc0e"]
+animation = &"spin"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4gy8l"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_swt1l"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r3ppy"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vvmtp"]
+states/End/position = Vector2(666, 174)
+states/Start/position = Vector2(227, 102)
+states/die/node = SubResource("AnimationNodeAnimation_ij2cl")
+states/die/position = Vector2(530, 174)
+states/shoot/node = SubResource("AnimationNodeAnimation_hixbl")
+states/shoot/position = Vector2(530, 102)
+states/spin/node = SubResource("AnimationNodeAnimation_mnc0e")
+states/spin/position = Vector2(375, 102)
+transitions = ["Start", "spin", SubResource("AnimationNodeStateMachineTransition_4gy8l"), "shoot", "spin", SubResource("AnimationNodeStateMachineTransition_swt1l"), "die", "End", SubResource("AnimationNodeStateMachineTransition_r3ppy")]
+
 [node name="Saucer" type="PathFollow2D"]
+rotates = false
+script = SubResource("GDScript_g0ned")
 
 [node name="CollidableObject" type="Area2D" parent="."]
 collision_layer = 2
@@ -14,38 +162,60 @@ collision_mask = 5
 script = ExtResource("1_o2mow")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollidableObject"]
+position = Vector2(5.24537e-07, 3)
 texture = ExtResource("2_vaq4n")
 hframes = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollidableObject"]
-position = Vector2(0, -3)
+[node name="Shape" type="CollisionShape2D" parent="CollidableObject"]
+position = Vector2(5.24537e-07, 0)
 shape = SubResource("CircleShape2D_scjs5")
 
-[node name="Booms" type="Node2D" parent="."]
+[node name="Booms" type="Node2D" parent="CollidableObject"]
 
-[node name="Marker2D" type="Marker2D" parent="Booms"]
+[node name="Marker2D" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(17, -12)
 
-[node name="Marker2D2" type="Marker2D" parent="Booms"]
+[node name="Marker2D2" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(-17, -15)
 
-[node name="Marker2D3" type="Marker2D" parent="Booms"]
+[node name="Marker2D3" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(0, 17)
 
-[node name="Marker2D4" type="Marker2D" parent="Booms"]
+[node name="Marker2D4" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(-30, -4)
 
-[node name="Marker2D5" type="Marker2D" parent="Booms"]
+[node name="Marker2D5" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(15, -28)
 
-[node name="Marker2D6" type="Marker2D" parent="Booms"]
+[node name="Marker2D6" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(18, 16)
 
-[node name="Marker2D7" type="Marker2D" parent="Booms"]
+[node name="Marker2D7" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(-17, 14)
 
-[node name="Marker2D8" type="Marker2D" parent="Booms"]
+[node name="Marker2D8" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(-7, -28)
 
-[node name="Marker2D9" type="Marker2D" parent="Booms"]
+[node name="Marker2D9" type="Marker2D" parent="CollidableObject/Booms"]
 position = Vector2(23, 3)
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -32.0
+offset_top = -44.0
+offset_right = 32.0
+offset_bottom = -41.0
+script = ExtResource("3_fcpvy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wi13k")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_vvmtp")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
