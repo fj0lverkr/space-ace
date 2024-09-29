@@ -9,7 +9,7 @@ const DIE: String = "die"
 const BOOM_TIMEOUT: float = 0.2
 
 @export
-var _health: int = 1500
+var _health: int = 1000
 @export
 var _points: int = 150
 
