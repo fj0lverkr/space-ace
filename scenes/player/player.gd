@@ -101,7 +101,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	var damage: int
-	if area is BaseBullet:
+	if area is BaseBullet or area is HomingMissile:
 		damage = area.get_damage()
 	else:
 		if _has_shield:
