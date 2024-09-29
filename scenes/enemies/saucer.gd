@@ -77,11 +77,12 @@ func _on_hitbox_on_area_entered(area: Area2D) -> void:
 
 
 func _on_health_bar_on_died() -> void:
+	_shoot_timer.stop()
 	_health_bar.hide()
 	_hitbox._disable_collision()
 	_speed = 0.0
 	SignalBus.on_score_points.emit(_points)
 	_state_machine.travel(DIE)
 	for m: Marker2D in _booms.get_children():
-		SignalBus.on_explode.emit(Explosion.Type.BOOM, m.global_position, 2.0)
+		SignalBus.on_explode.emit(Explosion.Type.BOOM, m.global_position, 1.5)
 		await get_tree().create_timer(BOOM_TIMEOUT).timeout
