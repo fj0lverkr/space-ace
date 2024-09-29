@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0qt6g1uxypvq"]
+
+[ext_resource type="PackedScene" uid="uid://bn3b3t3pwf5vw" path="res://scenes/collidable_object/collidable_object.tscn" id="1_iav8q"]
+[ext_resource type="Texture2D" uid="uid://dlcntcmwvsxtw" path="res://assets/lasers/spaceMissiles_040.png" id="2_qby8w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0550"]
+radius = 5.0
+height = 34.0
+
+[node name="HomingMissile" instance=ExtResource("1_iav8q")]
+collision_layer = 16
+collision_mask = 4
+
+[node name="Shape" parent="." index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g0550")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+rotation = 1.5708
+texture = ExtResource("2_qby8w")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+position = Vector2(-20, 0)
+rotation = 1.5708
+amount = 30
+lifetime = 0.4
+speed_scale = 0.7
+explosiveness = 0.15
+randomness = 0.1
+lifetime_randomness = 0.07
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(2, 3)
+radial_accel_min = 15.0
+radial_accel_max = 23.0
+tangential_accel_max = 3.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
