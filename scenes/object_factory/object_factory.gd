@@ -9,6 +9,7 @@ const EXPLOSION: PackedScene = preload("res://scenes/explosion/explosion.tscn")
 const ZIPPER: PackedScene = preload("res://scenes/enemies/enemy_zipper.tscn")
 const BIOMECH: PackedScene = preload("res://scenes/enemies/enemy_bio.tscn")
 const BOMBER: PackedScene = preload("res://scenes/enemies/enemy_bomber.tscn")
+const MISSILE: PackedScene = preload("res://scenes/homing_missile/homing_missile.tscn")
 
 const ADD_OBJECT: String = "_add_object"
 const ADD_PATH_FOLLOWER: String = "_add_follower_to_path"
@@ -26,6 +27,7 @@ var _override_droprates_pct: float = 100:
 
 func _ready() -> void:
     SignalBus.on_shoot.connect(_on_shoot)
+    SignalBus.on_shoot_missile.connect(_on_shoot_missile)
     SignalBus.on_try_powerup.connect(_on_try_powerup)
     SignalBus.on_explode.connect(_on_explode)
     SignalBus.on_request_enemy.connect(_on_request_enemy)
@@ -52,6 +54,23 @@ func _on_shoot(bt: BaseBullet.BulletType, dir: Vector2, speed: float, gp: Vector
 
     scene.setup(dir, speed)
     call_deferred(ADD_OBJECT, scene, gp)
+
+
+func _on_shoot_missile(gp: Vector2) -> void:
+    var missiles: Array[HomingMissile]
+    var m_left: HomingMissile = MISSILE.instantiate()
+    var m_mid: HomingMissile = MISSILE.instantiate()
+    var m_right: HomingMissile = MISSILE.instantiate()
+    m_left.set_direction(Vector2.LEFT)
+    m_mid.set_direction(Vector2.DOWN)
+    m_right.set_direction(Vector2.RIGHT)
+    missiles.append(m_left)
+    missiles.append(m_right)
+    missiles.append(m_mid)
+    missiles.shuffle()
+    for m: HomingMissile in missiles:
+        call_deferred(ADD_OBJECT, m, gp)
+        await Engine.get_main_loop().create_timer(0.5).timeout
 
 
 func _on_try_powerup(chance: float, gp: Vector2, type: PowerUp.PowerUpType = PowerUp.PowerUpType.NONE) -> void:

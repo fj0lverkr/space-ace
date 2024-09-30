@@ -30,12 +30,13 @@ var _sound: AudioStreamPlayer2D = $Sound
 @onready
 var _booms: Node2D = $Hitbox/Booms
 
-var _speed: float = 20.0
+var _speed: float = 30.0
 var _is_shooting: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.on_game_over.connect(_on_game_over)
 	_health_bar.setup(_health, _health)
 	GameUtils.set_and_start_timer(_shoot_timer, WAIT_TIME, WAIT_TIME + WAIT_VAR)
 
@@ -60,6 +61,19 @@ func _shoot() -> void:
 	_state_machine.travel(SHOOT)
 	_sprite.rotation = _hitbox.rotation
 	SoundManager.play_saucer_open(_sound)
+	SignalBus.on_shoot_missile.emit(global_position)
+
+
+func _explode(points: int) -> void:
+	_shoot_timer.stop()
+	_health_bar.hide()
+	_hitbox._disable_collision()
+	_speed = 0.0
+	SignalBus.on_score_points.emit(points)
+	_state_machine.travel(DIE)
+	for m: Marker2D in _booms.get_children():
+		SignalBus.on_explode.emit(Explosion.Type.BOOM, m.global_position, 1.5)
+		await get_tree().create_timer(BOOM_TIMEOUT).timeout
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
@@ -77,12 +91,8 @@ func _on_hitbox_on_area_entered(area: Area2D) -> void:
 
 
 func _on_health_bar_on_died() -> void:
-	_shoot_timer.stop()
-	_health_bar.hide()
-	_hitbox._disable_collision()
-	_speed = 0.0
-	SignalBus.on_score_points.emit(_points)
-	_state_machine.travel(DIE)
-	for m: Marker2D in _booms.get_children():
-		SignalBus.on_explode.emit(Explosion.Type.BOOM, m.global_position, 1.5)
-		await get_tree().create_timer(BOOM_TIMEOUT).timeout
+	_explode(_points)
+
+
+func _on_game_over() -> void:
+	_explode(0)
