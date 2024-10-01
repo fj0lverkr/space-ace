@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://vg28ug27osy4"]
+
+[ext_resource type="Script" path="res://scenes/saucer_manager/saucer_manager.gd" id="1_l2xx0"]
+
+[sub_resource type="Curve2D" id="Curve2D_0eb5w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -37, 64, -210, 1, 210, -1, 355, 172, 0, 0, 0, 0, 747, 66)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_f2w6p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 745, 65, 158, -6, -158, 6, 356, 176, 0, 0, 0, 0, -41, 62)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_pd0bh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 322, -96, 0, 0, 0, 0, 323, 584)
+}
+point_count = 2
+
+[node name="SaucerManager" type="Node2D"]
+script = ExtResource("1_l2xx0")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_0eb5w")
+
+[node name="Path2D2" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_f2w6p")
+
+[node name="Path2D3" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_pd0bh")

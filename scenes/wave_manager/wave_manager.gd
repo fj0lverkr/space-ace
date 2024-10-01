@@ -32,18 +32,20 @@ func _spawn_wave() -> void:
 	if WAVES.is_first_wave(_wave_count) and _wave_count != 0:
 		_speed_factor *= SPEEDFACTOR
 		_spawn_gap_factor *= SPAWNGAPFACTOR
+		SignalBus.on_spawn_saucer.emit()
+	
+	else:
+		_set_random_path_index()
+		var path: Path2D = _paths_list[_last_path_index]
+		var wave: EnemyWave = WAVES.get_wave_for_count(_wave_count)
+		var wave_gap: float = wave.get_gap() * _spawn_gap_factor
 
-	_set_random_path_index()
-	var path: Path2D = _paths_list[_last_path_index]
-	var wave: EnemyWave = WAVES.get_wave_for_count(_wave_count)
-	var wave_gap: float = wave.get_gap() * _spawn_gap_factor
+		for i: int in range(wave.get_number()):
+			SignalBus.on_request_enemy.emit(wave.get_enemy_type(), wave.get_enemy_variant(), path, _speed_factor)
+			await get_tree().create_timer(wave_gap).timeout
 
-	for i: int in range(wave.get_number()):
-		SignalBus.on_request_enemy.emit(wave.get_enemy_type(), wave.get_enemy_variant(), path, _speed_factor)
-		await get_tree().create_timer(wave_gap).timeout
-
-	_wave_count += 1
-	_spawn_timer.start(_wave_gap)
+		_wave_count += 1
+		_spawn_timer.start(_wave_gap)
 
 
 func _set_random_path_index() -> void:
