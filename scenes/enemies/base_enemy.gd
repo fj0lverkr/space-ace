@@ -67,6 +67,21 @@ func setup(s: SubType) -> void:
 	_points = _points_data[s]
 
 
+func destroy(do_points: bool, do_pu: bool) -> void:
+	_speed = 0.0
+	SignalBus.on_explode.emit(Explosion.Type.BOOM, global_position, 2.0)
+	if do_points:
+		SignalBus.on_score_points.emit(_points)
+	_disable()
+	if do_pu:
+		SignalBus.on_try_powerup.emit(_drop_rate, global_position)
+	_animation_player.play(Constants.FLICKER)
+
+
+func update_speed(by: float) -> void:
+	_speed *= by
+
+
 func _on_out_of_time_timeout() -> void:
 	queue_free()
 
@@ -101,10 +116,6 @@ func _enable() -> void:
 	_laser_timer.start()
 
 
-func update_speed(by: float) -> void:
-	_speed *= by
-
-
 func _on_laser_timer_timeout() -> void:
 	_can_shoot = true
 
@@ -114,17 +125,12 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is CollidableObject:
 		damage = area.get_damage()
 	else:
-		damage = int(_health_bar.value) + 1
+		destroy(false, true)
 	_health_bar.update_value(-damage)
 
 
 func _on_health_bar_on_died() -> void:
-	_speed = 0.0
-	SignalBus.on_explode.emit(Explosion.Type.BOOM, global_position, 2.0)
-	SignalBus.on_score_points.emit(_points)
-	_disable()
-	SignalBus.on_try_powerup.emit(_drop_rate, global_position)
-	_animation_player.play(Constants.FLICKER)
+	destroy(true, true)
 
 func _on_screen_entered() -> void:
 	_enable()

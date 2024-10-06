@@ -47,4 +47,4 @@ func _toggle_pauze(paused: bool) -> void:
 func _on_game_over() -> void:
 	GameManager.set_game_over(true)
 	for e: BaseEnemy in get_tree().get_nodes_in_group(Constants.GRP_ENEMIES):
-		e.set_process(false)
+		e.destroy(false, false)
