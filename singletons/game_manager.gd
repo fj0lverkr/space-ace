@@ -16,6 +16,7 @@ func load_main_scene() -> void:
 
 
 func load_level_scene() -> void:
+	_score = 0
 	get_tree().change_scene_to_packed(LEVEL)
 
 
@@ -33,3 +34,26 @@ func set_game_over(is_over: bool) -> void:
 
 func get_game_over() -> bool:
 	return _game_over
+
+
+func get_hi_score() -> int:
+	var save_file: FileAccess = FileAccess.open("user://savegame.save", FileAccess.READ)
+	if not save_file:
+		_save_score()
+		return _score
+	else:
+		var save_data: Dictionary = save_file.get_var()
+		var hs: int = save_data["hi_score"]
+		if hs >= _score:
+			return hs
+		else:
+			_save_score()
+			return _score
+
+
+func _save_score() -> void:
+	var save_file: FileAccess = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_data: Dictionary = {
+		"hi_score": _score
+	}
+	save_file.store_var(save_data)

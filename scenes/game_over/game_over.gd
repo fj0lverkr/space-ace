@@ -26,7 +26,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_game_over() -> void:
-    var score_text: String = "Score: %s Hi-score: NaN" % GameManager.get_score()
+    var score_text: String = "Score: %s Hi-score: %s" % [GameManager.get_score(), GameManager.get_hi_score()]
     score_label.text = score_text
     continue_timer.start()
     show()
