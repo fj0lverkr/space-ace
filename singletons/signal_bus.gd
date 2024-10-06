@@ -14,3 +14,4 @@ signal on_score_points(points: int)
 signal on_game_over
 signal on_shield_disable
 signal on_spawn_saucer
+signal on_saucer_removed

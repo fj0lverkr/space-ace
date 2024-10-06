@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	progress += delta * _speed
 
 	if progress_ratio > 0.99:
-		queue_free()
+		_remove_saucer()
 
 
 func _on_shoot_timer_timeout() -> void:
@@ -74,6 +74,11 @@ func _explode(points: int) -> void:
 	for m: Marker2D in _booms.get_children():
 		SignalBus.on_explode.emit(Explosion.Type.BOOM, m.global_position, 1.5)
 		await get_tree().create_timer(BOOM_TIMEOUT).timeout
+
+
+func _remove_saucer() -> void:
+	SignalBus.on_saucer_removed.emit()
+	queue_free()
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

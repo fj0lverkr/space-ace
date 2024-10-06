@@ -21,6 +21,7 @@ var _spawn_gap_factor: float = 1.0
 
 func _ready() -> void:
 	SignalBus.on_game_over.connect(_on_game_over)
+	SignalBus.on_saucer_removed.connect(_on_saucer_removed)
 	_paths_list = _paths.get_children()
 	_spawn_wave()
 
@@ -33,6 +34,7 @@ func _spawn_wave() -> void:
 		_speed_factor *= SPEEDFACTOR
 		_spawn_gap_factor *= SPAWNGAPFACTOR
 		SignalBus.on_spawn_saucer.emit()
+		_wave_count += 1
 	
 	else:
 		_set_random_path_index()
@@ -60,3 +62,8 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_game_over() -> void:
 	_can_spawn = false
+
+
+func _on_saucer_removed() -> void:
+	print("saucer removed")
+	_spawn_wave()

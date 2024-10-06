@@ -29,6 +29,7 @@ func activate() -> void:
 	_hits_left = _max_hits
 	_collission_shape.call_deferred("set_disabled", false)
 	show()
+	_animation_player.play("RESET")
 	_timer.start()
 
 

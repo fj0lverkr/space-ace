@@ -49,6 +49,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	progress += _speed * delta
+	
+	if progress_ratio > 0.99:
+		queue_free()
 
 
 func _get_player_ref() -> Player:
@@ -79,7 +82,10 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 		SignalBus.on_shoot.emit(bt, dir, speed, gp)
 		_can_shoot = false
 	elif _laser_timer.is_stopped():
-		GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x, _laser_timeout.y)
+		if bomb:
+			GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x * 1.5, _laser_timeout.y * 2)
+		else:
+			GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x, _laser_timeout.y)
 
 
 func _disable(wt: float = 0.0) -> void:
@@ -119,12 +125,6 @@ func _on_health_bar_on_died() -> void:
 	_disable()
 	SignalBus.on_try_powerup.emit(_drop_rate, global_position)
 	_animation_player.play(Constants.FLICKER)
-
-
-func _on_screen_exited() -> void:
-	_disable(2.5)
-	_oob_timer.start()
-
 
 func _on_screen_entered() -> void:
 	_enable()

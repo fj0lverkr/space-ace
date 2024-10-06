@@ -8,9 +8,15 @@ var _tip: Marker2D = $BulletTipMarker
 
 var _direction: Vector2 = Vector2.UP
 var _speed: float = 200.0
+var _player_ref: Player
 
 
 func _ready() -> void:
+	_player_ref = _get_player_ref()
+	if not _player_ref:
+		queue_free()
+	
+	SignalBus.on_game_over.connect(_blow_up)
 	look_at(_direction)
 
 
@@ -28,6 +34,10 @@ func _blow_up() -> void:
 	SignalBus.on_explode.emit(Explosion.Type.EXPLOSION, _tip.global_position)
 	set_process(false)
 	queue_free()
+
+
+func _get_player_ref() -> Player:
+	return get_tree().get_first_node_in_group(Constants.GRP_PLAYER)
 
 
 func _on_screen_exited() -> void:

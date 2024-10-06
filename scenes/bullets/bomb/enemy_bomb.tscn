@@ -50,6 +50,7 @@ _data = {
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("2_by6vf")
+_rotation_speed_radians = 1.8
 _damage = 40
 
 [node name="Sprite2D" parent="." index="0"]
@@ -65,3 +66,10 @@ libraries = {
 "": SubResource("AnimationLibrary_sn6t4")
 }
 autoplay = "default"
+
+[node name="bombTimer" type="Timer" parent="." index="6"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="bombTimer" to="." method="_blow_up"]
