@@ -14,6 +14,8 @@ var _max_health: int = 200
 var _start_health: int = 200
 @export
 var _powerup_health_boost: int = 15
+@export
+var _laser_time_out: float = 0.15
 
 @onready
 var _sprite: Sprite2D = $Sprite2D
@@ -27,12 +29,15 @@ var _sfx_player: AudioStreamPlayer2D = $Sfx
 var _gun_left: Marker2D = $GunLeft
 @onready
 var _gun_right: Marker2D = $GunRight
+@onready
+var _laser_time_out_timer: Timer = $LasertimeOut
 
 var _bounds: Rect2
 var _last_shot_left: bool = false
 var _paused: bool = false
 var _health: int
 var _has_shield: bool = false
+var _can_shoot: bool = true
 
 
 func _ready() -> void:
@@ -75,13 +80,14 @@ func _toggle_pause(p: bool) -> void:
 
 
 func _shoot() -> void:
-	if _paused:
+	if _paused or !_can_shoot:
 		return
 
 	_last_shot_left = !_last_shot_left
 	var gp: Vector2 = _gun_left.global_position if _last_shot_left else _gun_right.global_position
 	SignalBus.on_shoot.emit(BaseBullet.BulletType.PLAYER, Vector2.UP, _bullet_speed, gp)
-
+	_can_shoot = false
+	_laser_time_out_timer.start(_laser_time_out)
 
 func get_health() -> int:
 	return _health
@@ -129,3 +135,6 @@ func _on_shield_disable() -> void:
 func die() -> void:
 	SignalBus.on_game_over.emit()
 	queue_free()
+
+func _on_lasertime_out_timeout() -> void:
+	_can_shoot = true

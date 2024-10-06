@@ -12,7 +12,7 @@ const SUBTYPE: Dictionary = {
 const LASER_TIMEOUT: Dictionary = {
 	SubType.YELLOW: Vector2(1.0, 5.0),
 	SubType.BLUE: Vector2(0.5, 3.0),
-	SubType.RED: Vector2(0.5, 2.0),
+	SubType.RED: Vector2(0.2, 1.0),
 }
 
 @onready
@@ -98,7 +98,7 @@ func _shoot(gp: Vector2, bomb: bool = false, dir: Vector2 = Vector2.DOWN, speed:
 		_can_shoot = false
 	elif _laser_timer.is_stopped():
 		if bomb:
-			GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x * 1.5, _laser_timeout.y * 2)
+			GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x * 0.5, _laser_timeout.y * 2)
 		else:
 			GameUtils.set_and_start_timer(_laser_timer, _laser_timeout.x, _laser_timeout.y)
 

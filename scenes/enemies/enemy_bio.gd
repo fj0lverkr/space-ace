@@ -3,14 +3,14 @@ extends BaseEnemy
 
 const HEALTH: Dictionary = {
 	SubType.YELLOW: 20,
-	SubType.BLUE: 30,
-	SubType.RED: 50,
+	SubType.BLUE: 50,
+	SubType.RED: 75,
 }
 
 const SPEED: Dictionary = {
 	SubType.YELLOW: 90,
-	SubType.BLUE: 100,
-	SubType.RED: 120,
+	SubType.BLUE: 120,
+	SubType.RED: 150,
 }
 
 const DROPRATES: Dictionary = {
@@ -22,7 +22,7 @@ const DROPRATES: Dictionary = {
 const POINTS: Dictionary = {
 	SubType.YELLOW: 5,
 	SubType.BLUE: 10,
-	SubType.RED: 15,
+	SubType.RED: 20,
 }
 
 @onready
