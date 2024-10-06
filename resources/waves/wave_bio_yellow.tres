@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=2 format=3 uid="uid://bxiqj4tbv7ojf"]
+
+[ext_resource type="Script" path="res://resources/waves/enemy_wave.gd" id="1_2yt1q"]
+
+[resource]
+script = ExtResource("1_2yt1q")
+_enemy_type = 1
+_enemy_variant = 0
+_gap = 2.0
+_number = 15

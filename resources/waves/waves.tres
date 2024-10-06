@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="EnemyWaves" load_steps=6 format=3 uid="uid://dlpdwknd8eer7"]
+[gd_resource type="Resource" script_class="EnemyWaves" load_steps=12 format=3 uid="uid://dlpdwknd8eer7"]
 
 [ext_resource type="Script" path="res://resources/waves/enemy_wave.gd" id="1_jmm3g"]
+[ext_resource type="Resource" uid="uid://demmn8stb4jv4" path="res://resources/waves/wave_zipper_yellow.tres" id="2_6ibwa"]
 [ext_resource type="Script" path="res://resources/waves/enemy_waves.gd" id="2_ta1ey"]
-[ext_resource type="Resource" uid="uid://cfn1m8jmecx8u" path="res://resources/waves/wave1.tres" id="2_vfh6n"]
-[ext_resource type="Resource" uid="uid://demmn8stb4jv4" path="res://resources/waves/wave2.tres" id="3_ky11r"]
-[ext_resource type="Resource" uid="uid://b5nn2bj7oxpww" path="res://resources/waves/wave3.tres" id="4_13dnr"]
+[ext_resource type="Resource" uid="uid://dnn7aan12sics" path="res://resources/waves/wave_zipper_blue.tres" id="3_yn3ww"]
+[ext_resource type="Resource" uid="uid://dxd1pxtdnu01d" path="res://resources/waves/wave_zipper_red.tres" id="4_26weg"]
+[ext_resource type="Resource" uid="uid://do2cy7twurhef" path="res://resources/waves/wave_bomber_yellow.tres" id="5_n5l37"]
+[ext_resource type="Resource" uid="uid://dsy4xt0rvshkp" path="res://resources/waves/wave_bomber_blue.tres" id="6_osk7x"]
+[ext_resource type="Resource" uid="uid://b5nn2bj7oxpww" path="res://resources/waves/wave_bomber_red.tres" id="7_0e2h7"]
+[ext_resource type="Resource" uid="uid://bxiqj4tbv7ojf" path="res://resources/waves/wave_bio_yellow.tres" id="8_upwyl"]
+[ext_resource type="Resource" uid="uid://cfn1m8jmecx8u" path="res://resources/waves/wave_bio_blue.tres" id="9_nbb8m"]
+[ext_resource type="Resource" uid="uid://cvn65lsb7ibdu" path="res://resources/waves/wave_bio_red.tres" id="10_xdfqt"]
 
 [resource]
 script = ExtResource("2_ta1ey")
-_waves = Array[ExtResource("1_jmm3g")]([ExtResource("2_vfh6n"), ExtResource("3_ky11r"), ExtResource("4_13dnr")])
+_waves = Array[ExtResource("1_jmm3g")]([ExtResource("2_6ibwa"), ExtResource("3_yn3ww"), ExtResource("4_26weg"), ExtResource("5_n5l37"), ExtResource("6_osk7x"), ExtResource("7_0e2h7"), ExtResource("8_upwyl"), ExtResource("9_nbb8m"), ExtResource("10_xdfqt")])

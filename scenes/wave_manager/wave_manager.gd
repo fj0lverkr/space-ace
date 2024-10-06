@@ -39,7 +39,7 @@ func _spawn_wave() -> void:
 	else:
 		_set_random_path_index()
 		var path: Path2D = _paths_list[_last_path_index]
-		var wave: EnemyWave = WAVES.get_wave_for_count(_wave_count)
+		var wave: EnemyWave = WAVES.get_random_wave()
 		var wave_gap: float = wave.get_gap() * _spawn_gap_factor
 
 		for i: int in range(wave.get_number()):

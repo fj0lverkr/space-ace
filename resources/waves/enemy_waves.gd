@@ -5,9 +5,9 @@ extends Resource
 var _waves: Array[EnemyWave]
 
 
-func get_wave_for_count(count: int) -> EnemyWave:
-    return _waves[count % _waves.size()]
+func get_random_wave() -> EnemyWave:
+    return _waves.pick_random()
 
 
 func is_first_wave(count: int) -> bool:
-    return count % _waves.size() == 0
+    return count % int(_waves.size() / 3.0) == 0
